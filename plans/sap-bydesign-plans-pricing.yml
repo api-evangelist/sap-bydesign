@@ -1,0 +1,29 @@
+name: SAP Business ByDesign Plans and Pricing
+description: SAP Business ByDesign is a cloud ERP solution priced on a per-user, per-month subscription model. Pricing is structured around a base package plus user-type tiers targeting midmarket companies.
+url: https://www.sap.com/products/erp/business-bydesign/pricing.html
+plans:
+  - name: Self-Service User
+    description: Limited access for occasional users such as employees submitting timesheets, expenses, or purchase requests.
+    price: 20
+    unit: user/month
+    currency: USD
+  - name: Core User
+    description: Full access to core ERP functionality including financials, procurement, and supply chain management.
+    price: 112
+    unit: user/month
+    currency: USD
+  - name: Advanced User
+    description: Extended access including advanced analytics, project management, and service management capabilities.
+    price: 203
+    unit: user/month
+    currency: USD
+  - name: Base Package
+    description: Mandatory base package required for all ByDesign deployments covering infrastructure, hosting, upgrades, and 24/7 support.
+    price: 1704
+    unit: entitlement package/month
+    currency: USD
+notes:
+  - Pricing includes hosting, unlimited storage, access to all application areas, quarterly upgrades, and 24/7 support.
+  - API access is included as part of the subscription; no separate API tier pricing is published.
+  - Pricing is indicative and may vary by region, reseller, or negotiated contract.
+  - Contact SAP or an authorized SAP partner for exact pricing.

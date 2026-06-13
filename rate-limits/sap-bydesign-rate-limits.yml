@@ -1,0 +1,21 @@
+name: SAP Business ByDesign Rate Limits
+description: SAP Business ByDesign does not publish explicit public API rate limit thresholds. API throttling is managed at the tenant level by SAP infrastructure. OData and SOAP services are subject to fair-use policies governed by the subscription tier and tenant configuration.
+url: https://help.sap.com/docs/SAP_BUSINESS_BYDESIGN
+limits:
+  - type: OData API Requests
+    description: No publicly documented hard rate limit. Requests are throttled by SAP infrastructure based on tenant resources and fair-use guidelines.
+    unit: requests/minute
+    value: not published
+  - type: SOAP Web Service Calls
+    description: SOAP service calls are subject to tenant-level resource governance; no public numeric limit is specified.
+    unit: calls/minute
+    value: not published
+  - type: Concurrent Sessions
+    description: Communication user sessions for integration scenarios are limited by tenant licensing configuration.
+    unit: concurrent connections
+    value: not published
+notes:
+  - SAP Business ByDesign manages API throughput at the infrastructure level as part of the cloud service.
+  - Tenants experiencing throttling should contact SAP Support or their SAP partner.
+  - Heavy batch extraction workloads should be scheduled during off-peak hours.
+  - OData API for Data Sources is recommended for bulk analytical data extraction to reduce load on transactional services.

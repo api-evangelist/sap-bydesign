@@ -1,0 +1,24 @@
+name: SAP Business ByDesign FinOps
+description: Financial operations guidance for managing SAP Business ByDesign API and subscription costs. ByDesign is sold as an all-inclusive SaaS subscription; API access is bundled with the platform subscription rather than metered separately.
+url: https://www.sap.com/products/erp/business-bydesign/pricing.html
+model: subscription
+billing_cycle: monthly
+cost_drivers:
+  - name: User Count
+    description: The primary cost driver is the number and type of named users. Each user is assigned a user type (Self-Service, Core, or Advanced) which determines the monthly per-user fee.
+    optimization: Audit active users regularly and reassign license types to match actual usage patterns. Consolidate Self-Service users where possible.
+  - name: Base Package
+    description: A mandatory base package fee (~$1,704/month) is required regardless of user count. This covers hosting, support, and infrastructure.
+    optimization: Ensure the base package is negotiated as part of multi-year contracts to obtain volume discounts.
+  - name: Integration Volume
+    description: While API calls are not directly metered, heavy integration workloads can affect tenant performance and may require infrastructure upgrades through SAP.
+    optimization: Use OData Data Source APIs for bulk extractions instead of transactional OData APIs to minimize system load. Schedule batch jobs during off-peak hours.
+  - name: Add-On Modules
+    description: Certain advanced capabilities such as advanced analytics, project billing, and extended CRM may be priced as add-on modules.
+    optimization: Review module usage quarterly and deactivate unused modules.
+recommendations:
+  - Review user license assignments quarterly to eliminate unused or over-provisioned user seats.
+  - Negotiate multi-year contracts with SAP to secure discounted subscription rates.
+  - Use SAP Business ByDesign's built-in analytics to monitor API usage patterns and identify inefficient integrations.
+  - Leverage OData batch requests to reduce the number of individual API calls for bulk operations.
+  - Work with an authorized SAP partner for license optimization reviews.
