@@ -1,0 +1,135 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "aid": "https://apis.io/aid",
+    "apis": "https://apis.io/apis",
+    "sap": "https://sap.com/vocabulary/",
+    "odata": "https://docs.oasis-open.org/odata/odata/v4.0/",
+    "erp": "https://schema.org/SoftwareApplication"
+  },
+  "@type": "Organization",
+  "@id": "https://www.sap.com",
+  "name": "SAP SE",
+  "url": "https://www.sap.com",
+  "description": "SAP is a multinational software corporation that develops enterprise software to manage business operations and customer relations.",
+  "sameAs": [
+    "https://www.linkedin.com/showcase/sap-business-bydesign/",
+    "https://x.com/SAP",
+    "https://github.com/SAP-samples/byd-api-samples"
+  ],
+  "mainEntityOfPage": {
+    "@type": "SoftwareApplication",
+    "@id": "https://www.sap.com/products/erp/business-bydesign.html",
+    "name": "SAP Business ByDesign",
+    "description": "SAP Business ByDesign is a cloud ERP solution for midmarket companies providing OData REST and SOAP web service APIs for managing financials, CRM, procurement, supply chain, project management, and analytics.",
+    "applicationCategory": "ERP",
+    "operatingSystem": "Cloud",
+    "url": "https://www.sap.com/products/erp/business-bydesign.html",
+    "featureList": [
+      "Financials",
+      "CRM",
+      "Procurement",
+      "Supply Chain",
+      "Project Management",
+      "Analytics",
+      "Human Resources"
+    ],
+    "offers": {
+      "@type": "Offer",
+      "url": "https://www.sap.com/products/erp/business-bydesign/pricing.html",
+      "priceCurrency": "USD",
+      "description": "Subscription pricing based on users and modules. Contact SAP for a quote."
+    },
+    "hasPart": [
+      {
+        "@type": "WebAPI",
+        "@id": "https://raw.githubusercontent.com/api-evangelist/sap-bydesign/refs/heads/main/apis.yml#sap-bydesign:odata-business-objects",
+        "name": "SAP Business ByDesign OData Business Objects API",
+        "description": "OData v2 REST API for UI-driven access to SAP Business ByDesign business objects.",
+        "documentation": "https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/sap-business-bydesign-odata-api-examples/ba-p/13400614",
+        "endpointUrl": "https://{tenant}.bydesign.cloud.sap/sap/byd/odata/cust/v1",
+        "termsOfService": "https://www.sap.com/about/trust-center/agreements/cloud/cloud-services.html",
+        "provider": {
+          "@type": "Organization",
+          "name": "SAP SE",
+          "url": "https://www.sap.com"
+        },
+        "potentialAction": [
+          {
+            "@type": "Action",
+            "name": "Query Sales Orders",
+            "target": "https://{tenant}.bydesign.cloud.sap/sap/byd/odata/cust/v1/khsalesorder/SalesOrderCollection"
+          },
+          {
+            "@type": "Action",
+            "name": "Query Materials",
+            "target": "https://{tenant}.bydesign.cloud.sap/sap/byd/odata/cust/v1/vmumaterial/MaterialCollection"
+          },
+          {
+            "@type": "Action",
+            "name": "Query Customer Invoices",
+            "target": "https://{tenant}.bydesign.cloud.sap/sap/byd/odata/cust/v1/khcustomerinvoice/CustomerInvoiceQueryByElements2"
+          },
+          {
+            "@type": "Action",
+            "name": "Query Purchase Orders",
+            "target": "https://{tenant}.bydesign.cloud.sap/sap/byd/odata/cust/v1/khpurchaseorder/PurchaseOrderCollection"
+          },
+          {
+            "@type": "Action",
+            "name": "Query Projects",
+            "target": "https://{tenant}.bydesign.cloud.sap/sap/byd/odata/cust/v1/khproject/ProjectCollection"
+          }
+        ]
+      },
+      {
+        "@type": "WebAPI",
+        "@id": "https://raw.githubusercontent.com/api-evangelist/sap-bydesign/refs/heads/main/apis.yml#sap-bydesign:odata-analytics",
+        "name": "SAP Business ByDesign OData Analytics API",
+        "description": "OData API for accessing pre-processed and formatted analytical data from SAP Business ByDesign reports, KPIs, and data sources.",
+        "documentation": "https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/sap-business-bydesign-odata-api-examples/ba-p/13400614",
+        "endpointUrl": "https://{tenant}.bydesign.cloud.sap/sap/byd/odata",
+        "provider": {
+          "@type": "Organization",
+          "name": "SAP SE",
+          "url": "https://www.sap.com"
+        },
+        "potentialAction": [
+          {
+            "@type": "Action",
+            "name": "Query Business Analytics Reports",
+            "target": "https://{tenant}.bydesign.cloud.sap/sap/byd/odata/ana_businessanalytics_analytics.svc/"
+          },
+          {
+            "@type": "Action",
+            "name": "Query Financial Analytics",
+            "target": "https://{tenant}.bydesign.cloud.sap/sap/byd/odata/fin_generalledger_analytics.svc/"
+          },
+          {
+            "@type": "Action",
+            "name": "Query Sales Analytics",
+            "target": "https://{tenant}.bydesign.cloud.sap/sap/byd/odata/crm_woc_salesorders_analytics.svc/"
+          }
+        ]
+      },
+      {
+        "@type": "WebAPI",
+        "@id": "https://raw.githubusercontent.com/api-evangelist/sap-bydesign/refs/heads/main/apis.yml#sap-bydesign:soap-web-services",
+        "name": "SAP Business ByDesign SOAP Web Services",
+        "description": "SOAP-based web services for system-to-system integration with SAP Business ByDesign.",
+        "documentation": "https://help.sap.com/docs/SAP_BUSINESS_BYDESIGN/34de7a7c1a7e43178141074817068fb1/37faab74f63049d7816184add8077065.html",
+        "endpointUrl": "https://{tenant}.bydesign.cloud.sap/sap/bc/srt",
+        "provider": {
+          "@type": "Organization",
+          "name": "SAP SE",
+          "url": "https://www.sap.com"
+        }
+      }
+    ]
+  },
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "url": "https://support.sap.com",
+    "contactType": "technical support"
+  }
+}
