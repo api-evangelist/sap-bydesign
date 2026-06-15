@@ -10,21 +10,47 @@
       "url": "https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/sap-business-bydesign-odata-api-examples/ba-p/13400614",
       "published": "2023-01-01",
       "description": "Comprehensive examples of SAP Business ByDesign OData API usage covering master data, sales, procurement, supply chain, and analytics scenarios including Postman collection samples.",
-      "tags": ["OData", "API", "Examples", "Integration"]
+      "tags": [
+        "OData",
+        "API",
+        "Examples",
+        "Integration"
+      ]
     },
     {
       "title": "SAP Business ByDesign SOAP Web Services Reference",
       "url": "https://help.sap.com/docs/SAP_BUSINESS_BYDESIGN/34de7a7c1a7e43178141074817068fb1/37faab74f63049d7816184add8077065.html",
       "published": "2023-01-01",
       "description": "Reference documentation for SAP Business ByDesign SOAP-based web services covering all business process areas including financials, CRM, procurement, supply chain, and HR.",
-      "tags": ["SOAP", "Web Services", "Integration", "Reference"]
+      "tags": [
+        "SOAP",
+        "Web Services",
+        "Integration",
+        "Reference"
+      ]
     },
     {
       "title": "SAP Business ByDesign Help Portal",
       "url": "https://help.sap.com/docs/SAP_BUSINESS_BYDESIGN",
       "published": "2023-01-01",
       "description": "Official SAP help documentation for SAP Business ByDesign including API guides, user guides, and integration scenarios.",
-      "tags": ["Documentation", "Help", "API Guide"]
+      "tags": [
+        "Documentation",
+        "Help",
+        "API Guide"
+      ]
     }
-  ]
+  ],
+  "repo": "sap-bydesign",
+  "feeds": [
+    {
+      "source": "https://www.linkedin.com/showcase/sap-business-bydesign/",
+      "feed_url": "https://www.linkedin.com/showcase/sap-business-bydesign/",
+      "title": "",
+      "saved": 0,
+      "method": "none"
+    }
+  ],
+  "post_count": 0,
+  "fetched": "2026-06-14T20:42:17Z"
 }
