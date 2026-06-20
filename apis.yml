@@ -1,7 +1,7 @@
 aid: sap-bydesign
 name: SAP Business ByDesign
 description: SAP Business ByDesign is a cloud ERP solution for midmarket companies providing OData REST and SOAP web service APIs for managing financials, CRM, procurement, supply chain, project management, and analytics. APIs support full CRUD operations on business objects, analytical data extraction, KPI access, and end-to-end business process automation across lead-to-quote, order-to-cash, and procure-to-pay workflows.
-image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
 url: https://raw.githubusercontent.com/api-evangelist/sap-bydesign/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -22,7 +22,7 @@ apis:
   - aid: sap-bydesign:odata-business-objects
     name: SAP Business ByDesign OData Business Objects API
     description: OData v2 REST API for UI-driven access to SAP Business ByDesign business objects. Supports querying, reading, creating, updating, deleting, and performing actions on business objects and documents across financials, sales, procurement, supply chain, and project management.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/sap-business-bydesign-odata-api-examples/ba-p/13400614
     baseURL: https://{tenant}.bydesign.cloud.sap/sap/byd/odata/v1
     tags:
@@ -43,7 +43,7 @@ apis:
   - aid: sap-bydesign:odata-analytics
     name: SAP Business ByDesign OData Analytics API
     description: OData API for accessing pre-processed and formatted analytical data from SAP Business ByDesign reports, KPIs, and data sources. Supports extraction of financial analytics, supply chain KPIs, sales reports, and raw analytical data in flat table format.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/sap-business-bydesign-odata-api-examples/ba-p/13400614
     baseURL: https://{tenant}.bydesign.cloud.sap/sap/byd/odata/v1
     tags:
@@ -63,7 +63,7 @@ apis:
   - aid: sap-bydesign:soap-web-services
     name: SAP Business ByDesign SOAP Web Services
     description: SOAP-based web services API for system-to-system integration with SAP Business ByDesign. Provides access to business processes including financials, procurement, supply chain, CRM, and HR through standardized WSDL-defined service contracts.
-    image: https://kinlane-productions.s3.amazonaws.com/apis-json/apis-json-logo.jpg
+    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
     humanURL: https://help.sap.com/docs/SAP_BUSINESS_BYDESIGN/34de7a7c1a7e43178141074817068fb1/37faab74f63049d7816184add8077065.html
     baseURL: https://{tenant}.bydesign.cloud.sap/sap/bc/srt/wsdl
     tags:
