@@ -35,7 +35,7 @@ apis:
     properties:
       - type: Documentation
         url: https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/sap-business-bydesign-odata-api-examples/ba-p/13400614
-      - type: GithubRepository
+      - type: GitHubRepository
         url: https://github.com/SAP-samples/byd-api-samples
     contact:
       - FN: SAP Support
@@ -55,7 +55,7 @@ apis:
     properties:
       - type: Documentation
         url: https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/sap-business-bydesign-odata-api-examples/ba-p/13400614
-      - type: GithubRepository
+      - type: GitHubRepository
         url: https://github.com/SAP-samples/byd-api-samples
     contact:
       - FN: SAP Support
