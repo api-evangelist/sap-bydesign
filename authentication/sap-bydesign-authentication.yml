@@ -1,0 +1,25 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/sap-bydesign-odata-api.json
+summary:
+  types:
+  - http
+  - oauth2
+  oauth2_flows:
+  - clientCredentials
+schemes:
+- name: basicAuth
+  type: http
+  scheme: basic
+  description: HTTP Basic Authentication using SAP Business ByDesign user credentials.
+  sources:
+  - openapi/sap-bydesign-odata-api.json
+- name: oAuth2
+  type: oauth2
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://{tenant}.bydesign.cloud.sap/sap/bc/sec/oauth2/token
+    scopes: 0
+  description: OAuth 2.0 authentication for SAP Business ByDesign.
+  sources:
+  - openapi/sap-bydesign-odata-api.json
