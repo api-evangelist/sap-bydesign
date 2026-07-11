@@ -1,0 +1,29 @@
+generated: '2026-07-11'
+method: searched
+source: openapi/sap-bydesign-odata-api.json
+docs: https://github.com/SAP-samples/partner-reference-application/blob/main/Tutorials/35b-Multi-Tenancy-Provisioning-Connect-ByD.md
+schemes:
+- name: oAuth2
+  source: openapi/sap-bydesign-odata-api.json
+  flows:
+  - flow: clientCredentials
+    tokenUrl: https://{tenant}.bydesign.cloud.sap/sap/bc/sec/oauth2/token
+  - flow: saml2Bearer
+    tokenUrl: https://{tenant}.bydesign.cloud.sap/sap/bc/sec/oauth2/token
+    description: OAuth 2.0 SAML Bearer assertion flow used for principal propagation
+      from SAP BTP and side-by-side extensions into SAP Business ByDesign.
+  description: OAuth 2.0 authentication for SAP Business ByDesign.
+note: SAP Business ByDesign does not publish a full OAuth scopes catalog; scopes
+  are tenant-specific work center IDs granted to an OAuth 2.0 client registration
+  in the "Application and User Management - OAuth 2.0 Client Registration" work center
+  view, and UIWC:CC_HOME is the only scope ID documented publicly by SAP (see docs
+  URL).
+scopes:
+- scope: UIWC:CC_HOME
+  description: Home work center scope. SAP's official guidance states selecting scope
+    ID UIWC:CC_HOME "is sufficient for most use cases"; effective access to OData
+    services is determined by the work centers assigned to the OAuth client and the
+    propagated business user's authorizations.
+  sources:
+  - https://github.com/SAP-samples/partner-reference-application/blob/main/Tutorials/35b-Multi-Tenancy-Provisioning-Connect-ByD.md
+  - https://github.com/SAP-samples/sme-partner-reference-application/blob/main/Tutorials/04-ByD-Integration.md

@@ -80,6 +80,10 @@ apis:
       - FN: SAP Support
         url: https://support.sap.com
 common:
+  - type: Authentication
+    url: authentication/sap-bydesign-authentication.yml
+  - type: OAuthScopes
+    url: scopes/sap-bydesign-scopes.yml
   - type: Website
     url: https://www.sap.com/products/erp/business-bydesign.html
   - type: Documentation
