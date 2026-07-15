@@ -80,6 +80,8 @@ apis:
       - FN: SAP Support
         url: https://support.sap.com
 common:
+  - type: AgenticAccess
+    url: agentic-access/sap-bydesign-agentic-access.yml
   - type: VulnerabilityDisclosure
     url: security/sap-bydesign-vulnerability-disclosure.yml
   - type: DomainSecurity

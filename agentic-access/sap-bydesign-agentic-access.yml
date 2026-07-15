@@ -1,0 +1,321 @@
+generated: '2026-07-15'
+method: generated
+source: openapi/sap-bydesign-odata-api.json
+description: Recommended x-agentic-access execution contracts, classified heuristically from
+  the OpenAPI. A governance starting point for exposing this API to AI agents — review and bind
+  audience per deployment. See research/curity/agentic-governance/.
+summary:
+  operations: 26
+  by_action_class:
+    connected: 19
+    acting: 7
+  by_consequence:
+    read: 19
+    write: 6
+    physical: 1
+  human_in_the_loop_required: 0
+operations:
+- path: /sap/byd/odata/cust/v1/{service}/
+  method: get
+  operationId: getEntitySets
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /sap/byd/odata/cust/v1/{service}/$metadata
+  method: get
+  operationId: getMetadata
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /sap/byd/odata/cust/v1/vmumaterial/MaterialCollection
+  method: get
+  operationId: queryMaterials
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /sap/byd/odata/cust/v1/vmumaterial/MaterialCollection
+  method: post
+  operationId: createMaterial
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /sap/byd/odata/cust/v1/khsalesorder/SalesOrderCollection
+  method: get
+  operationId: querySalesOrders
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /sap/byd/odata/cust/v1/khsalesorder/SalesOrderCollection('{ObjectID}')
+  method: get
+  operationId: getSalesOrder
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /sap/byd/odata/cust/v1/khcustomerquote/CustomerQuoteCollection
+  method: get
+  operationId: queryCustomerQuotes
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /sap/byd/odata/cust/v1/khcustomerquote/CustomerQuoteCollection
+  method: post
+  operationId: createCustomerQuote
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /sap/byd/odata/cust/v1/khcustomerinvoice/CustomerInvoiceQueryByElements2
+  method: get
+  operationId: queryCustomerInvoices
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /sap/byd/odata/cust/v1/khcustomerinvoice/Release
+  method: post
+  operationId: releaseCustomerInvoice
+  x-agentic-access:
+    action-class: acting
+    consequence: physical
+    subject: required
+    audience: null
+    token:
+      max-ttl: 300
+      exchange: true
+      purpose-required: true
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /sap/byd/odata/cust/v1/khpurchaseorder/PurchaseOrderCollection
+  method: get
+  operationId: queryPurchaseOrders
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /sap/byd/odata/cust/v1/khsupplierinvoice/SupplierInvoiceCollection
+  method: get
+  operationId: querySupplierInvoices
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /sap/byd/odata/cust/v1/khoutbounddelivery/OutboundDeliveryCollection
+  method: get
+  operationId: queryOutboundDeliveries
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /sap/byd/odata/cust/v1/khoutbounddelivery/Release
+  method: post
+  operationId: releaseOutboundDelivery
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /sap/byd/odata/cust/v1/khoutbounddeliveryrequest/ItemPostGoodsIssue
+  method: post
+  operationId: postGoodsIssue
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /sap/byd/odata/cust/v1/khinbounddelivery/InboundDeliveryCollection
+  method: get
+  operationId: queryInboundDeliveries
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /sap/byd/odata/cust/v1/khinbounddelivery/InboundDeliveryCollection
+  method: post
+  operationId: createInboundDelivery
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /sap/byd/odata/cust/v1/khinbounddelivery/PostGoodsReceipt
+  method: post
+  operationId: postGoodsReceipt
+  x-agentic-access:
+    action-class: acting
+    consequence: write
+    subject: required
+    audience: null
+    token:
+      max-ttl: 900
+    escalation:
+      human-in-the-loop: conditional
+      triggers:
+      - abnormal
+      - high-value
+    audit: required
+- path: /sap/byd/odata/cust/v1/khproject/ProjectCollection
+  method: get
+  operationId: queryProjects
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /sap/byd/odata/cust/v1/khlead/LeadCollection
+  method: get
+  operationId: queryLeads
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /sap/byd/odata/cust/v1/khopportunity/OpportunityCollection
+  method: get
+  operationId: queryOpportunities
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /sap/byd/odata/cust/v1/khpayment/PaymentCollection
+  method: get
+  operationId: queryPayments
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /sap/byd/odata/cust/v1/khhousebankaccount/HouseBankAccountQueryByElements
+  method: get
+  operationId: queryHouseBankAccounts
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /sap/byd/odata/ana_businessanalytics_analytics.svc/$metadata
+  method: get
+  operationId: getAnalyticsMetadata
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /sap/byd/odata/ana_businessanalytics_analytics.svc/{ReportEntitySet}
+  method: get
+  operationId: queryAnalyticsReport
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
+- path: /sap/byd/odata/
+  method: get
+  operationId: listODataServices
+  x-agentic-access:
+    action-class: connected
+    consequence: read
+    subject: optional
+    token:
+      max-ttl: 3600
+    audit: none
