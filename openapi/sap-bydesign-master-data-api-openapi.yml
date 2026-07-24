@@ -1,0 +1,325 @@
+openapi: 3.0.3
+info:
+  title: SAP Business ByDesign OData Analytics Master Data API
+  description: OData v2 REST API for SAP Business ByDesign — a cloud ERP solution for midmarket companies. Provides access to business objects and analytics across financials, CRM, procurement, supply chain, project management, and HR. Supports CRUD operations and custom OData services via the /sap/byd/odata/cust/v1/ namespace, plus pre-built analytics services via /sap/byd/odata/{service_name}.svc/.
+  version: 1.0.0
+  contact:
+    name: SAP Support
+    url: https://support.sap.com
+  externalDocs:
+    description: SAP Business ByDesign OData API Examples
+    url: https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/sap-business-bydesign-odata-api-examples/ba-p/13400614
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://{tenant}.bydesign.cloud.sap
+  description: SAP Business ByDesign tenant
+  variables:
+    tenant:
+      default: my-tenant
+      description: Your SAP Business ByDesign tenant hostname
+security:
+- basicAuth: []
+- oAuth2: []
+tags:
+- name: Master Data
+  description: Access and manage organizational structures, materials, service products, customers, suppliers, employees, and other master data objects.
+paths:
+  /sap/byd/odata/cust/v1/{service}/:
+    get:
+      summary: Get OData entity sets
+      description: Returns the OData service document listing all entity sets available in the specified custom OData service. Also returns an XSRF token in the response header for subsequent write operations.
+      operationId: getEntitySets
+      tags:
+      - Master Data
+      parameters:
+      - name: service
+        in: path
+        required: true
+        description: The custom OData service name (e.g., vmumaterial, khsalesorder, khcustomer).
+        schema:
+          type: string
+          example: vmumaterial
+      - $ref: '#/components/parameters/XCSRFTokenParam'
+      responses:
+        '200':
+          description: OData service document listing all entity sets.
+          headers:
+            x-csrf-token:
+              description: CSRF token for write operations.
+              schema:
+                type: string
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ODataServiceDocument'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sap/byd/odata/cust/v1/{service}/$metadata:
+    get:
+      summary: Get OData metadata
+      description: Returns the EDMX metadata document describing all entity types, entity sets, associations, and function imports for the specified custom OData service.
+      operationId: getMetadata
+      tags:
+      - Master Data
+      parameters:
+      - name: service
+        in: path
+        required: true
+        schema:
+          type: string
+          example: vmumaterial
+      - name: sap-label
+        in: query
+        required: false
+        description: Include SAP UI labels in the metadata.
+        schema:
+          type: string
+          enum:
+          - 'true'
+          - 'false'
+      - name: sap-language
+        in: query
+        required: false
+        description: Language code for labels (e.g., EN).
+        schema:
+          type: string
+          example: EN
+      responses:
+        '200':
+          description: EDMX metadata document.
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: xml
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sap/byd/odata/cust/v1/vmumaterial/MaterialCollection:
+    get:
+      summary: Query materials
+      description: Query material master data with optional OData filter, select, expand, and orderby parameters. Supports filtering on general data, purchasing data, logistics data, planning data, sales data, and valuation data.
+      operationId: queryMaterials
+      tags:
+      - Master Data
+      parameters:
+      - $ref: '#/components/parameters/FilterParam'
+      - $ref: '#/components/parameters/SelectParam'
+      - $ref: '#/components/parameters/ExpandParam'
+      - $ref: '#/components/parameters/TopParam'
+      - $ref: '#/components/parameters/SkipParam'
+      - $ref: '#/components/parameters/FormatParam'
+      responses:
+        '200':
+          description: Collection of material records.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  d:
+                    type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Material'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      summary: Create material
+      description: Creates a new material master record in SAP Business ByDesign.
+      operationId: createMaterial
+      tags:
+      - Master Data
+      parameters:
+      - $ref: '#/components/parameters/XCSRFTokenHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/MaterialCreate'
+      responses:
+        '201':
+          description: Material created successfully.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  d:
+                    $ref: '#/components/schemas/Material'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  parameters:
+    XCSRFTokenHeader:
+      name: x-csrf-token
+      in: header
+      required: true
+      description: 'CSRF token obtained from a prior GET request with x-csrf-token: Fetch.'
+      schema:
+        type: string
+    FormatParam:
+      name: $format
+      in: query
+      required: false
+      description: Response format. Use 'json' for JSON output.
+      schema:
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
+    SelectParam:
+      name: $select
+      in: query
+      required: false
+      description: Comma-separated list of properties to include in the response.
+      schema:
+        type: string
+    TopParam:
+      name: $top
+      in: query
+      required: false
+      description: Maximum number of records to return.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 20
+    ExpandParam:
+      name: $expand
+      in: query
+      required: false
+      description: Comma-separated navigation properties to expand inline.
+      schema:
+        type: string
+    XCSRFTokenParam:
+      name: x-csrf-token
+      in: header
+      required: false
+      description: Set to 'Fetch' to retrieve a CSRF token in the response header.
+      schema:
+        type: string
+        enum:
+        - Fetch
+    FilterParam:
+      name: $filter
+      in: query
+      required: false
+      description: OData filter expression (e.g., Status eq 'Released' and PostingDate ge datetime'2024-01-01T00:00:00').
+      schema:
+        type: string
+    SkipParam:
+      name: $skip
+      in: query
+      required: false
+      description: Number of records to skip for pagination.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+  schemas:
+    MaterialCreate:
+      type: object
+      description: Payload for creating a new material.
+      required:
+      - Description
+      - ProductTypeCode
+      - BaseMeasureUnitCode
+      properties:
+        InternalID:
+          type: string
+          description: Optional external material number. Auto-assigned if omitted.
+        Description:
+          type: string
+        ProductTypeCode:
+          type: string
+          example: '1'
+        BaseMeasureUnitCode:
+          type: string
+          example: EA
+    ODataServiceDocument:
+      type: object
+      properties:
+        d:
+          type: object
+          properties:
+            EntitySets:
+              type: array
+              items:
+                type: string
+    ODataError:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: object
+              properties:
+                lang:
+                  type: string
+                value:
+                  type: string
+    Material:
+      type: object
+      description: SAP Business ByDesign material master record.
+      properties:
+        ObjectID:
+          type: string
+          description: Internal unique identifier.
+        InternalID:
+          type: string
+          description: Material number (external key).
+        Description:
+          type: string
+          description: Material description.
+        ProductTypeCode:
+          type: string
+          description: Product type (1=Material, 2=Service).
+        BaseMeasureUnitCode:
+          type: string
+          description: Base unit of measure.
+        GoodsAndServicesAcquisitionTaxationCharacteristicsCode:
+          type: string
+        SalesInvoiceTaxationCharacteristicsCode:
+          type: string
+        CreationDateTime:
+          type: string
+          format: date-time
+        LastChangeDateTime:
+          type: string
+          format: date-time
+  responses:
+    Unauthorized:
+      description: Unauthorized — invalid or missing credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ODataError'
+    BadRequest:
+      description: Bad request — invalid OData query parameters or request body.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ODataError'
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using SAP Business ByDesign user credentials.
+    oAuth2:
+      type: oauth2
+      description: OAuth 2.0 authentication for SAP Business ByDesign.
+      flows:
+        clientCredentials:
+          tokenUrl: https://{tenant}.bydesign.cloud.sap/sap/bc/sec/oauth2/token
+          scopes: {}

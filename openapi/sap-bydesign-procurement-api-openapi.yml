@@ -1,0 +1,215 @@
+openapi: 3.0.3
+info:
+  title: SAP Business ByDesign OData Analytics Procurement API
+  description: OData v2 REST API for SAP Business ByDesign — a cloud ERP solution for midmarket companies. Provides access to business objects and analytics across financials, CRM, procurement, supply chain, project management, and HR. Supports CRUD operations and custom OData services via the /sap/byd/odata/cust/v1/ namespace, plus pre-built analytics services via /sap/byd/odata/{service_name}.svc/.
+  version: 1.0.0
+  contact:
+    name: SAP Support
+    url: https://support.sap.com
+  externalDocs:
+    description: SAP Business ByDesign OData API Examples
+    url: https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/sap-business-bydesign-odata-api-examples/ba-p/13400614
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://{tenant}.bydesign.cloud.sap
+  description: SAP Business ByDesign tenant
+  variables:
+    tenant:
+      default: my-tenant
+      description: Your SAP Business ByDesign tenant hostname
+security:
+- basicAuth: []
+- oAuth2: []
+tags:
+- name: Procurement
+  description: Access purchase orders, supplier invoices, and procurement-related business objects.
+paths:
+  /sap/byd/odata/cust/v1/khpurchaseorder/PurchaseOrderCollection:
+    get:
+      summary: Query purchase orders
+      description: Query purchase orders with optional OData filters.
+      operationId: queryPurchaseOrders
+      tags:
+      - Procurement
+      parameters:
+      - $ref: '#/components/parameters/FilterParam'
+      - $ref: '#/components/parameters/SelectParam'
+      - $ref: '#/components/parameters/ExpandParam'
+      - $ref: '#/components/parameters/TopParam'
+      - $ref: '#/components/parameters/SkipParam'
+      - $ref: '#/components/parameters/FormatParam'
+      responses:
+        '200':
+          description: Collection of purchase order records.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  d:
+                    type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/PurchaseOrder'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sap/byd/odata/cust/v1/khsupplierinvoice/SupplierInvoiceCollection:
+    get:
+      summary: Query supplier invoices
+      description: Query supplier invoices with OData filter parameters.
+      operationId: querySupplierInvoices
+      tags:
+      - Procurement
+      parameters:
+      - $ref: '#/components/parameters/FilterParam'
+      - $ref: '#/components/parameters/SelectParam'
+      - $ref: '#/components/parameters/TopParam'
+      - $ref: '#/components/parameters/SkipParam'
+      - $ref: '#/components/parameters/FormatParam'
+      responses:
+        '200':
+          description: Collection of supplier invoice records.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  d:
+                    type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/SupplierInvoice'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  schemas:
+    PurchaseOrder:
+      type: object
+      description: SAP Business ByDesign purchase order.
+      properties:
+        ObjectID:
+          type: string
+        ID:
+          type: string
+        SupplierID:
+          type: string
+        StatusCode:
+          type: string
+        NetAmount:
+          type: string
+        CurrencyCode:
+          type: string
+        OrderDate:
+          type: string
+          format: date
+    ODataError:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: object
+              properties:
+                lang:
+                  type: string
+                value:
+                  type: string
+    SupplierInvoice:
+      type: object
+      description: SAP Business ByDesign supplier invoice.
+      properties:
+        ObjectID:
+          type: string
+        ID:
+          type: string
+        SupplierID:
+          type: string
+        StatusCode:
+          type: string
+        GrossAmount:
+          type: string
+        CurrencyCode:
+          type: string
+        PostingDate:
+          type: string
+          format: date
+  parameters:
+    FormatParam:
+      name: $format
+      in: query
+      required: false
+      description: Response format. Use 'json' for JSON output.
+      schema:
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
+    SelectParam:
+      name: $select
+      in: query
+      required: false
+      description: Comma-separated list of properties to include in the response.
+      schema:
+        type: string
+    TopParam:
+      name: $top
+      in: query
+      required: false
+      description: Maximum number of records to return.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 20
+    ExpandParam:
+      name: $expand
+      in: query
+      required: false
+      description: Comma-separated navigation properties to expand inline.
+      schema:
+        type: string
+    FilterParam:
+      name: $filter
+      in: query
+      required: false
+      description: OData filter expression (e.g., Status eq 'Released' and PostingDate ge datetime'2024-01-01T00:00:00').
+      schema:
+        type: string
+    SkipParam:
+      name: $skip
+      in: query
+      required: false
+      description: Number of records to skip for pagination.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+  responses:
+    Unauthorized:
+      description: Unauthorized — invalid or missing credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ODataError'
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using SAP Business ByDesign user credentials.
+    oAuth2:
+      type: oauth2
+      description: OAuth 2.0 authentication for SAP Business ByDesign.
+      flows:
+        clientCredentials:
+          tokenUrl: https://{tenant}.bydesign.cloud.sap/sap/bc/sec/oauth2/token
+          scopes: {}

@@ -1,0 +1,200 @@
+openapi: 3.0.3
+info:
+  title: SAP Business ByDesign OData Analytics Financials API
+  description: OData v2 REST API for SAP Business ByDesign — a cloud ERP solution for midmarket companies. Provides access to business objects and analytics across financials, CRM, procurement, supply chain, project management, and HR. Supports CRUD operations and custom OData services via the /sap/byd/odata/cust/v1/ namespace, plus pre-built analytics services via /sap/byd/odata/{service_name}.svc/.
+  version: 1.0.0
+  contact:
+    name: SAP Support
+    url: https://support.sap.com
+  externalDocs:
+    description: SAP Business ByDesign OData API Examples
+    url: https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/sap-business-bydesign-odata-api-examples/ba-p/13400614
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://{tenant}.bydesign.cloud.sap
+  description: SAP Business ByDesign tenant
+  variables:
+    tenant:
+      default: my-tenant
+      description: Your SAP Business ByDesign tenant hostname
+security:
+- basicAuth: []
+- oAuth2: []
+tags:
+- name: Financials
+  description: Access payments, bank statements, house bank accounts, and financial documents.
+paths:
+  /sap/byd/odata/cust/v1/khpayment/PaymentCollection:
+    get:
+      summary: Query payments
+      description: Query payment records from the financials module.
+      operationId: queryPayments
+      tags:
+      - Financials
+      parameters:
+      - $ref: '#/components/parameters/FilterParam'
+      - $ref: '#/components/parameters/SelectParam'
+      - $ref: '#/components/parameters/TopParam'
+      - $ref: '#/components/parameters/SkipParam'
+      - $ref: '#/components/parameters/FormatParam'
+      responses:
+        '200':
+          description: Collection of payment records.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  d:
+                    type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/Payment'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sap/byd/odata/cust/v1/khhousebankaccount/HouseBankAccountQueryByElements:
+    get:
+      summary: Query house bank accounts
+      description: Query house bank accounts using element-based filter parameters.
+      operationId: queryHouseBankAccounts
+      tags:
+      - Financials
+      parameters:
+      - $ref: '#/components/parameters/FilterParam'
+      - $ref: '#/components/parameters/SelectParam'
+      - $ref: '#/components/parameters/TopParam'
+      - $ref: '#/components/parameters/SkipParam'
+      - $ref: '#/components/parameters/FormatParam'
+      responses:
+        '200':
+          description: Collection of house bank account records.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  d:
+                    type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/HouseBankAccount'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  parameters:
+    FormatParam:
+      name: $format
+      in: query
+      required: false
+      description: Response format. Use 'json' for JSON output.
+      schema:
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
+    SelectParam:
+      name: $select
+      in: query
+      required: false
+      description: Comma-separated list of properties to include in the response.
+      schema:
+        type: string
+    TopParam:
+      name: $top
+      in: query
+      required: false
+      description: Maximum number of records to return.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 20
+    FilterParam:
+      name: $filter
+      in: query
+      required: false
+      description: OData filter expression (e.g., Status eq 'Released' and PostingDate ge datetime'2024-01-01T00:00:00').
+      schema:
+        type: string
+    SkipParam:
+      name: $skip
+      in: query
+      required: false
+      description: Number of records to skip for pagination.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+  schemas:
+    ODataError:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: object
+              properties:
+                lang:
+                  type: string
+                value:
+                  type: string
+    HouseBankAccount:
+      type: object
+      description: SAP Business ByDesign house bank account.
+      properties:
+        ObjectID:
+          type: string
+        BankAccountID:
+          type: string
+        BankID:
+          type: string
+        IBAN:
+          type: string
+        CurrencyCode:
+          type: string
+    Payment:
+      type: object
+      description: SAP Business ByDesign payment record.
+      properties:
+        ObjectID:
+          type: string
+        ID:
+          type: string
+        PaymentDate:
+          type: string
+          format: date
+        Amount:
+          type: string
+        CurrencyCode:
+          type: string
+        StatusCode:
+          type: string
+  responses:
+    Unauthorized:
+      description: Unauthorized — invalid or missing credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ODataError'
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using SAP Business ByDesign user credentials.
+    oAuth2:
+      type: oauth2
+      description: OAuth 2.0 authentication for SAP Business ByDesign.
+      flows:
+        clientCredentials:
+          tokenUrl: https://{tenant}.bydesign.cloud.sap/sap/bc/sec/oauth2/token
+          scopes: {}

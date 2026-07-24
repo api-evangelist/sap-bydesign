@@ -1,0 +1,393 @@
+openapi: 3.0.3
+info:
+  title: SAP Business ByDesign OData Analytics Sales API
+  description: OData v2 REST API for SAP Business ByDesign — a cloud ERP solution for midmarket companies. Provides access to business objects and analytics across financials, CRM, procurement, supply chain, project management, and HR. Supports CRUD operations and custom OData services via the /sap/byd/odata/cust/v1/ namespace, plus pre-built analytics services via /sap/byd/odata/{service_name}.svc/.
+  version: 1.0.0
+  contact:
+    name: SAP Support
+    url: https://support.sap.com
+  externalDocs:
+    description: SAP Business ByDesign OData API Examples
+    url: https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/sap-business-bydesign-odata-api-examples/ba-p/13400614
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://{tenant}.bydesign.cloud.sap
+  description: SAP Business ByDesign tenant
+  variables:
+    tenant:
+      default: my-tenant
+      description: Your SAP Business ByDesign tenant hostname
+security:
+- basicAuth: []
+- oAuth2: []
+tags:
+- name: Sales
+  description: Manage sales quotes, sales orders, customer invoices, customer returns, and related sales processes.
+paths:
+  /sap/byd/odata/cust/v1/khsalesorder/SalesOrderCollection:
+    get:
+      summary: Query sales orders
+      description: Query sales orders with OData filter, select, expand, and orderby parameters.
+      operationId: querySalesOrders
+      tags:
+      - Sales
+      parameters:
+      - $ref: '#/components/parameters/FilterParam'
+      - $ref: '#/components/parameters/SelectParam'
+      - $ref: '#/components/parameters/ExpandParam'
+      - $ref: '#/components/parameters/TopParam'
+      - $ref: '#/components/parameters/SkipParam'
+      - $ref: '#/components/parameters/FormatParam'
+      responses:
+        '200':
+          description: Collection of sales order records.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  d:
+                    type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/SalesOrder'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sap/byd/odata/cust/v1/khsalesorder/SalesOrderCollection('{ObjectID}'):
+    get:
+      summary: Get sales order by ID
+      description: Retrieve a single sales order by its ObjectID.
+      operationId: getSalesOrder
+      tags:
+      - Sales
+      parameters:
+      - name: ObjectID
+        in: path
+        required: true
+        description: The unique ObjectID of the sales order.
+        schema:
+          type: string
+      - $ref: '#/components/parameters/SelectParam'
+      - $ref: '#/components/parameters/ExpandParam'
+      - $ref: '#/components/parameters/FormatParam'
+      responses:
+        '200':
+          description: Sales order record.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  d:
+                    $ref: '#/components/schemas/SalesOrder'
+        '404':
+          $ref: '#/components/responses/NotFound'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sap/byd/odata/cust/v1/khcustomerquote/CustomerQuoteCollection:
+    get:
+      summary: Query customer quotes
+      description: Query sales quotes (customer quotes) with OData filter parameters.
+      operationId: queryCustomerQuotes
+      tags:
+      - Sales
+      parameters:
+      - $ref: '#/components/parameters/FilterParam'
+      - $ref: '#/components/parameters/SelectParam'
+      - $ref: '#/components/parameters/ExpandParam'
+      - $ref: '#/components/parameters/TopParam'
+      - $ref: '#/components/parameters/SkipParam'
+      - $ref: '#/components/parameters/FormatParam'
+      responses:
+        '200':
+          description: Collection of customer quote records.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  d:
+                    type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/CustomerQuote'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+    post:
+      summary: Create customer quote
+      description: Creates a new sales quote. Prices are automatically determined based on configured price lists.
+      operationId: createCustomerQuote
+      tags:
+      - Sales
+      parameters:
+      - $ref: '#/components/parameters/XCSRFTokenHeader'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CustomerQuoteCreate'
+      responses:
+        '201':
+          description: Customer quote created.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  d:
+                    $ref: '#/components/schemas/CustomerQuote'
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sap/byd/odata/cust/v1/khcustomerinvoice/CustomerInvoiceQueryByElements2:
+    get:
+      summary: Query customer invoices
+      description: Query customer invoices using OData filter parameters. Supports filtering by date, customer, status, and other invoice attributes.
+      operationId: queryCustomerInvoices
+      tags:
+      - Sales
+      parameters:
+      - $ref: '#/components/parameters/FilterParam'
+      - $ref: '#/components/parameters/SelectParam'
+      - $ref: '#/components/parameters/ExpandParam'
+      - $ref: '#/components/parameters/TopParam'
+      - $ref: '#/components/parameters/SkipParam'
+      - $ref: '#/components/parameters/FormatParam'
+      responses:
+        '200':
+          description: Collection of customer invoice records.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  d:
+                    type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          $ref: '#/components/schemas/CustomerInvoice'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sap/byd/odata/cust/v1/khcustomerinvoice/Release:
+    post:
+      summary: Release customer invoice
+      description: Releases (posts) a customer invoice, making it legally binding and initiating the accounts receivable process.
+      operationId: releaseCustomerInvoice
+      tags:
+      - Sales
+      parameters:
+      - $ref: '#/components/parameters/XCSRFTokenHeader'
+      - name: ObjectID
+        in: query
+        required: true
+        description: ObjectID of the customer invoice to release, enclosed in single quotes.
+        schema:
+          type: string
+          example: '''00163E10-4A13-1EE1-A3C9-BF3D3B279F2A'''
+      responses:
+        '200':
+          description: Customer invoice released successfully.
+        '400':
+          $ref: '#/components/responses/BadRequest'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  parameters:
+    XCSRFTokenHeader:
+      name: x-csrf-token
+      in: header
+      required: true
+      description: 'CSRF token obtained from a prior GET request with x-csrf-token: Fetch.'
+      schema:
+        type: string
+    FormatParam:
+      name: $format
+      in: query
+      required: false
+      description: Response format. Use 'json' for JSON output.
+      schema:
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
+    SelectParam:
+      name: $select
+      in: query
+      required: false
+      description: Comma-separated list of properties to include in the response.
+      schema:
+        type: string
+    TopParam:
+      name: $top
+      in: query
+      required: false
+      description: Maximum number of records to return.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 20
+    ExpandParam:
+      name: $expand
+      in: query
+      required: false
+      description: Comma-separated navigation properties to expand inline.
+      schema:
+        type: string
+    FilterParam:
+      name: $filter
+      in: query
+      required: false
+      description: OData filter expression (e.g., Status eq 'Released' and PostingDate ge datetime'2024-01-01T00:00:00').
+      schema:
+        type: string
+    SkipParam:
+      name: $skip
+      in: query
+      required: false
+      description: Number of records to skip for pagination.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+  schemas:
+    CustomerQuoteCreate:
+      type: object
+      required:
+      - BuyerPartyID
+      properties:
+        BuyerPartyID:
+          type: string
+          description: Customer ID.
+        ExpirationDate:
+          type: string
+          format: date
+        Note:
+          type: string
+    CustomerInvoice:
+      type: object
+      description: SAP Business ByDesign customer invoice.
+      properties:
+        ObjectID:
+          type: string
+        ID:
+          type: string
+        BillToPartyID:
+          type: string
+        StatusCode:
+          type: string
+        GrossAmount:
+          type: string
+        NetAmount:
+          type: string
+        CurrencyCode:
+          type: string
+        PostingDate:
+          type: string
+          format: date
+    CustomerQuote:
+      type: object
+      description: SAP Business ByDesign customer quote (sales quote).
+      properties:
+        ObjectID:
+          type: string
+        ID:
+          type: string
+          description: Quote number.
+        BuyerPartyID:
+          type: string
+        StatusCode:
+          type: string
+        NetAmount:
+          type: string
+        CurrencyCode:
+          type: string
+        ExpirationDate:
+          type: string
+          format: date
+        CreationDateTime:
+          type: string
+          format: date-time
+    ODataError:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: object
+              properties:
+                lang:
+                  type: string
+                value:
+                  type: string
+    SalesOrder:
+      type: object
+      description: SAP Business ByDesign sales order record.
+      properties:
+        ObjectID:
+          type: string
+        ID:
+          type: string
+          description: Sales order number.
+        BuyerID:
+          type: string
+          description: Customer purchase order number.
+        BillToPartyID:
+          type: string
+        ShipToPartyID:
+          type: string
+        StatusCode:
+          type: string
+          description: 1=Open, 2=In Process, 3=Closed, 4=Cancelled.
+        NetAmount:
+          type: string
+        CurrencyCode:
+          type: string
+        CreationDateTime:
+          type: string
+          format: date-time
+  responses:
+    NotFound:
+      description: Not found — the requested entity does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ODataError'
+    Unauthorized:
+      description: Unauthorized — invalid or missing credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ODataError'
+    BadRequest:
+      description: Bad request — invalid OData query parameters or request body.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ODataError'
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using SAP Business ByDesign user credentials.
+    oAuth2:
+      type: oauth2
+      description: OAuth 2.0 authentication for SAP Business ByDesign.
+      flows:
+        clientCredentials:
+          tokenUrl: https://{tenant}.bydesign.cloud.sap/sap/bc/sec/oauth2/token
+          scopes: {}

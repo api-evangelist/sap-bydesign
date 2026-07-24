@@ -1,0 +1,189 @@
+openapi: 3.0.3
+info:
+  title: SAP Business ByDesign OData Analytics API
+  description: OData v2 REST API for SAP Business ByDesign — a cloud ERP solution for midmarket companies. Provides access to business objects and analytics across financials, CRM, procurement, supply chain, project management, and HR. Supports CRUD operations and custom OData services via the /sap/byd/odata/cust/v1/ namespace, plus pre-built analytics services via /sap/byd/odata/{service_name}.svc/.
+  version: 1.0.0
+  contact:
+    name: SAP Support
+    url: https://support.sap.com
+  externalDocs:
+    description: SAP Business ByDesign OData API Examples
+    url: https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/sap-business-bydesign-odata-api-examples/ba-p/13400614
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0
+servers:
+- url: https://{tenant}.bydesign.cloud.sap
+  description: SAP Business ByDesign tenant
+  variables:
+    tenant:
+      default: my-tenant
+      description: Your SAP Business ByDesign tenant hostname
+security:
+- basicAuth: []
+- oAuth2: []
+tags:
+- name: Analytics
+  description: Access pre-processed analytical data, reports, and KPIs from Business ByDesign data sources.
+paths:
+  /sap/byd/odata/ana_businessanalytics_analytics.svc/$metadata:
+    get:
+      summary: Get Business Analytics metadata
+      description: Returns metadata for the Business Analytics OData service, describing available report entity sets and their characteristics and key figures.
+      operationId: getAnalyticsMetadata
+      tags:
+      - Analytics
+      responses:
+        '200':
+          description: EDMX metadata for Business Analytics service.
+          content:
+            application/xml:
+              schema:
+                type: string
+                format: xml
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sap/byd/odata/ana_businessanalytics_analytics.svc/{ReportEntitySet}:
+    get:
+      summary: Query Business Analytics report
+      description: Query data from a Business Analytics report entity set. Filter by characteristics such as posting date, fiscal period, and report-specific selection parameters. Supports $select for choosing characteristics and key figures, and $filter for restricting result rows.
+      operationId: queryAnalyticsReport
+      tags:
+      - Analytics
+      parameters:
+      - name: ReportEntitySet
+        in: path
+        required: true
+        description: The report entity set identifier (e.g., RP{ReportID}QueryResults).
+        schema:
+          type: string
+      - $ref: '#/components/parameters/FilterParam'
+      - $ref: '#/components/parameters/SelectParam'
+      - $ref: '#/components/parameters/TopParam'
+      - $ref: '#/components/parameters/SkipParam'
+      - $ref: '#/components/parameters/FormatParam'
+      responses:
+        '200':
+          description: Report data rows.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  d:
+                    type: object
+                    properties:
+                      results:
+                        type: array
+                        items:
+                          type: object
+                          additionalProperties: true
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+  /sap/byd/odata/:
+    get:
+      summary: List all OData analytics services
+      description: Returns all available OData analytics service endpoints in SAP Business ByDesign.
+      operationId: listODataServices
+      tags:
+      - Analytics
+      responses:
+        '200':
+          description: List of available OData services.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ODataServiceDocument'
+        '401':
+          $ref: '#/components/responses/Unauthorized'
+components:
+  parameters:
+    FormatParam:
+      name: $format
+      in: query
+      required: false
+      description: Response format. Use 'json' for JSON output.
+      schema:
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
+    SelectParam:
+      name: $select
+      in: query
+      required: false
+      description: Comma-separated list of properties to include in the response.
+      schema:
+        type: string
+    TopParam:
+      name: $top
+      in: query
+      required: false
+      description: Maximum number of records to return.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 20
+    FilterParam:
+      name: $filter
+      in: query
+      required: false
+      description: OData filter expression (e.g., Status eq 'Released' and PostingDate ge datetime'2024-01-01T00:00:00').
+      schema:
+        type: string
+    SkipParam:
+      name: $skip
+      in: query
+      required: false
+      description: Number of records to skip for pagination.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+  schemas:
+    ODataServiceDocument:
+      type: object
+      properties:
+        d:
+          type: object
+          properties:
+            EntitySets:
+              type: array
+              items:
+                type: string
+    ODataError:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: object
+              properties:
+                lang:
+                  type: string
+                value:
+                  type: string
+  responses:
+    Unauthorized:
+      description: Unauthorized — invalid or missing credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ODataError'
+  securitySchemes:
+    basicAuth:
+      type: http
+      scheme: basic
+      description: HTTP Basic Authentication using SAP Business ByDesign user credentials.
+    oAuth2:
+      type: oauth2
+      description: OAuth 2.0 authentication for SAP Business ByDesign.
+      flows:
+        clientCredentials:
+          tokenUrl: https://{tenant}.bydesign.cloud.sap/sap/bc/sec/oauth2/token
+          scopes: {}
