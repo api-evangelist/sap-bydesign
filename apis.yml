@@ -1,7 +1,20 @@
 aid: sap-bydesign
 name: SAP Business ByDesign
 description: SAP Business ByDesign is a cloud ERP solution for midmarket companies providing OData REST and SOAP web service APIs for managing financials, CRM, procurement, supply chain, project management, and analytics. APIs support full CRUD operations on business objects, analytical data extraction, KPI access, and end-to-end business process automation across lead-to-quote, order-to-cash, and procure-to-pay workflows.
-image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+accessModel:
+  pricing: paid
+  onboarding: self-serve
+  trial: false
+  try_now: false
+  public: false
+  label: Paid · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
+image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/icons/sap-bydesign.png
 url: https://raw.githubusercontent.com/api-evangelist/sap-bydesign/refs/heads/main/apis.yml
 created: '2026-06-13'
 modified: '2026-06-13'
@@ -19,66 +32,174 @@ tags:
   - SOAP
   - SAP
 apis:
-  - aid: sap-bydesign:odata-business-objects
-    name: SAP Business ByDesign OData Business Objects API
-    description: OData v2 REST API for UI-driven access to SAP Business ByDesign business objects. Supports querying, reading, creating, updating, deleting, and performing actions on business objects and documents across financials, sales, procurement, supply chain, and project management.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/sap-business-bydesign-odata-api-examples/ba-p/13400614
-    baseURL: https://{tenant}.bydesign.cloud.sap/sap/byd/odata/v1
-    tags:
-      - OData
-      - Business Objects
-      - CRUD
-      - Financials
-      - Sales
-      - Procurement
-    properties:
-      - type: Documentation
-        url: https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/sap-business-bydesign-odata-api-examples/ba-p/13400614
-      - type: GitHubRepository
-        url: https://github.com/SAP-samples/byd-api-samples
-    contact:
-      - FN: SAP Support
-        url: https://support.sap.com
-  - aid: sap-bydesign:odata-analytics
-    name: SAP Business ByDesign OData Analytics API
-    description: OData API for accessing pre-processed and formatted analytical data from SAP Business ByDesign reports, KPIs, and data sources. Supports extraction of financial analytics, supply chain KPIs, sales reports, and raw analytical data in flat table format.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/sap-business-bydesign-odata-api-examples/ba-p/13400614
-    baseURL: https://{tenant}.bydesign.cloud.sap/sap/byd/odata/v1
-    tags:
-      - OData
-      - Analytics
-      - Reports
-      - KPIs
-      - Data Sources
-    properties:
-      - type: Documentation
-        url: https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/sap-business-bydesign-odata-api-examples/ba-p/13400614
-      - type: GitHubRepository
-        url: https://github.com/SAP-samples/byd-api-samples
-    contact:
-      - FN: SAP Support
-        url: https://support.sap.com
-  - aid: sap-bydesign:soap-web-services
-    name: SAP Business ByDesign SOAP Web Services
-    description: SOAP-based web services API for system-to-system integration with SAP Business ByDesign. Provides access to business processes including financials, procurement, supply chain, CRM, and HR through standardized WSDL-defined service contracts.
-    image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
-    humanURL: https://help.sap.com/docs/SAP_BUSINESS_BYDESIGN/34de7a7c1a7e43178141074817068fb1/37faab74f63049d7816184add8077065.html
-    baseURL: https://{tenant}.bydesign.cloud.sap/sap/bc/srt/wsdl
-    tags:
-      - SOAP
-      - Web Services
-      - Integration
-      - Financials
-      - Procurement
-      - CRM
-    properties:
-      - type: Documentation
-        url: https://help.sap.com/docs/SAP_BUSINESS_BYDESIGN/34de7a7c1a7e43178141074817068fb1/37faab74f63049d7816184add8077065.html
-    contact:
-      - FN: SAP Support
-        url: https://support.sap.com
+- aid: sap-bydesign:odata-business-objects
+  name: SAP Business ByDesign OData Business Objects API
+  description: >-
+    OData v2 REST API for UI-driven access to SAP Business ByDesign business objects. Supports querying,
+    reading, creating, updating, deleting, and performing actions on business objects and documents across
+    financials, sales, procurement, supply chain, and project management.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: >-
+    https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/sap-business-bydesign-odata-api-examples/ba-p/13400614
+  baseURL: https://{tenant}.bydesign.cloud.sap/sap/byd/odata/v1
+  tags:
+  - OData
+  - Business Objects
+  - CRUD
+  - Financials
+  - Sales
+  - Procurement
+  properties:
+  - type: Documentation
+    url: >-
+      https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/sap-business-bydesign-odata-api-examples/ba-p/13400614
+  - type: GitHubRepository
+    url: https://github.com/SAP-samples/byd-api-samples
+  contact:
+  - FN: SAP Support
+    url: https://support.sap.com
+- aid: sap-bydesign:odata-analytics
+  name: SAP Business ByDesign OData Analytics API
+  description: >-
+    OData API for accessing pre-processed and formatted analytical data from SAP Business ByDesign reports,
+    KPIs, and data sources. Supports extraction of financial analytics, supply chain KPIs, sales reports,
+    and raw analytical data in flat table format.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: >-
+    https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/sap-business-bydesign-odata-api-examples/ba-p/13400614
+  baseURL: https://{tenant}.bydesign.cloud.sap/sap/byd/odata/v1
+  tags:
+  - OData
+  - Analytics
+  - Reports
+  - KPIs
+  - Data Sources
+  properties:
+  - type: Documentation
+    url: >-
+      https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/sap-business-bydesign-odata-api-examples/ba-p/13400614
+  - type: GitHubRepository
+    url: https://github.com/SAP-samples/byd-api-samples
+  contact:
+  - FN: SAP Support
+    url: https://support.sap.com
+- aid: sap-bydesign:soap-web-services
+  name: SAP Business ByDesign SOAP Web Services
+  description: >-
+    SOAP-based web services API for system-to-system integration with SAP Business ByDesign. Provides
+    access to business processes including financials, procurement, supply chain, CRM, and HR through
+    standardized WSDL-defined service contracts.
+  image: https://kinlane-images.s3.amazonaws.com/shared/apis-json/apis-json-logo.jpg
+  humanURL: >-
+    https://help.sap.com/docs/SAP_BUSINESS_BYDESIGN/34de7a7c1a7e43178141074817068fb1/37faab74f63049d7816184add8077065.html
+  baseURL: https://{tenant}.bydesign.cloud.sap/sap/bc/srt/wsdl
+  tags:
+  - SOAP
+  - Web Services
+  - Integration
+  - Financials
+  - Procurement
+  - CRM
+  properties:
+  - type: Documentation
+    url: >-
+      https://help.sap.com/docs/SAP_BUSINESS_BYDESIGN/34de7a7c1a7e43178141074817068fb1/37faab74f63049d7816184add8077065.html
+  contact:
+  - FN: SAP Support
+    url: https://support.sap.com
+- aid: sap-bydesign:sap-bydesign-analytics-api
+  name: SAP Business ByDesign Analytics API
+  description: >-
+    Access pre-processed analytical data, reports, and KPIs from Business ByDesign data sources.
+  humanURL: >-
+    https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/sap-business-bydesign-odata-api-examples/ba-p/13400614
+  baseURL: https://{tenant}.bydesign.cloud.sap/sap/byd/odata/v1
+  tags:
+  - Analytics
+  properties:
+  - type: OpenAPI
+    url: openapi/sap-bydesign-analytics-api-openapi.yml
+- aid: sap-bydesign:sap-bydesign-crm-api
+  name: SAP Business ByDesign CRM API
+  description: Manage leads, opportunities, and customer relationship data.
+  humanURL: >-
+    https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/sap-business-bydesign-odata-api-examples/ba-p/13400614
+  baseURL: https://{tenant}.bydesign.cloud.sap/sap/byd/odata/v1
+  tags:
+  - CRM
+  properties:
+  - type: OpenAPI
+    url: openapi/sap-bydesign-crm-api-openapi.yml
+- aid: sap-bydesign:sap-bydesign-financials-api
+  name: SAP Business ByDesign Financials API
+  description: Access payments, bank statements, house bank accounts, and financial documents.
+  humanURL: >-
+    https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/sap-business-bydesign-odata-api-examples/ba-p/13400614
+  baseURL: https://{tenant}.bydesign.cloud.sap/sap/byd/odata/v1
+  tags:
+  - Financials
+  properties:
+  - type: OpenAPI
+    url: openapi/sap-bydesign-financials-api-openapi.yml
+- aid: sap-bydesign:sap-bydesign-master-data-api
+  name: SAP Business ByDesign Master Data API
+  description: >-
+    Access and manage organizational structures, materials, service products, customers, suppliers, employees,
+    and other master data objects.
+  humanURL: >-
+    https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/sap-business-bydesign-odata-api-examples/ba-p/13400614
+  baseURL: https://{tenant}.bydesign.cloud.sap/sap/byd/odata/v1
+  tags:
+  - Master Data
+  properties:
+  - type: OpenAPI
+    url: openapi/sap-bydesign-master-data-api-openapi.yml
+- aid: sap-bydesign:sap-bydesign-procurement-api
+  name: SAP Business ByDesign Procurement API
+  description: Access purchase orders, supplier invoices, and procurement-related business objects.
+  humanURL: >-
+    https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/sap-business-bydesign-odata-api-examples/ba-p/13400614
+  baseURL: https://{tenant}.bydesign.cloud.sap/sap/byd/odata/v1
+  tags:
+  - Procurement
+  properties:
+  - type: OpenAPI
+    url: openapi/sap-bydesign-procurement-api-openapi.yml
+- aid: sap-bydesign:sap-bydesign-projects-api
+  name: SAP Business ByDesign Projects API
+  description: Read and manage project data.
+  humanURL: >-
+    https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/sap-business-bydesign-odata-api-examples/ba-p/13400614
+  baseURL: https://{tenant}.bydesign.cloud.sap/sap/byd/odata/v1
+  tags:
+  - Projects
+  properties:
+  - type: OpenAPI
+    url: openapi/sap-bydesign-projects-api-openapi.yml
+- aid: sap-bydesign:sap-bydesign-sales-api
+  name: SAP Business ByDesign Sales API
+  description: >-
+    Manage sales quotes, sales orders, customer invoices, customer returns, and related sales processes.
+  humanURL: >-
+    https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/sap-business-bydesign-odata-api-examples/ba-p/13400614
+  baseURL: https://{tenant}.bydesign.cloud.sap/sap/byd/odata/v1
+  tags:
+  - Sales
+  properties:
+  - type: OpenAPI
+    url: openapi/sap-bydesign-sales-api-openapi.yml
+- aid: sap-bydesign:sap-bydesign-supply-chain-api
+  name: SAP Business ByDesign Supply Chain API
+  description: >-
+    Manage inbound and outbound deliveries, goods receipts, goods issues, and production orders.
+  humanURL: >-
+    https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/sap-business-bydesign-odata-api-examples/ba-p/13400614
+  baseURL: https://{tenant}.bydesign.cloud.sap/sap/byd/odata/v1
+  tags:
+  - Supply Chain
+  properties:
+  - type: OpenAPI
+    url: openapi/sap-bydesign-supply-chain-api-openapi.yml
 common:
   - type: AgenticAccess
     url: agentic-access/sap-bydesign-agentic-access.yml
