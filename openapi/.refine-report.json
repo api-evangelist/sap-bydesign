@@ -1,0 +1,28 @@
+{
+  "provider": "sap-bydesign",
+  "sources": [
+    "sap-bydesign-analytics-api-openapi.yml",
+    "sap-bydesign-crm-api-openapi.yml",
+    "sap-bydesign-financials-api-openapi.yml",
+    "sap-bydesign-master-data-api-openapi.yml",
+    "sap-bydesign-procurement-api-openapi.yml",
+    "sap-bydesign-projects-api-openapi.yml",
+    "sap-bydesign-sales-api-openapi.yml",
+    "sap-bydesign-supply-chain-api-openapi.yml"
+  ],
+  "outputs": [
+    "sap-bydesign-analytics-api-openapi.yml",
+    "sap-bydesign-crm-api-openapi.yml",
+    "sap-bydesign-financials-api-openapi.yml",
+    "sap-bydesign-master-data-api-openapi.yml",
+    "sap-bydesign-procurement-api-openapi.yml",
+    "sap-bydesign-projects-api-openapi.yml",
+    "sap-bydesign-sales-api-openapi.yml",
+    "sap-bydesign-supply-chain-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
