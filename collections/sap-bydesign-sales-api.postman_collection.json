@@ -1,0 +1,1614 @@
+{
+  "item": [
+    {
+      "id": "e7e8ad28-6a4d-47a9-b117-efb690406aff",
+      "name": "Sales",
+      "description": {
+        "content": "Manage sales quotes, sales orders, customer invoices, customer returns, and related sales processes.",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "9a71a292-1413-47ea-a92b-74493ccd5e7a",
+          "name": "Query sales orders",
+          "request": {
+            "name": "Query sales orders",
+            "description": {
+              "content": "Query sales orders with OData filter, select, expand, and orderby parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sap",
+                "byd",
+                "odata",
+                "cust",
+                "v1",
+                "khsalesorder",
+                "SalesOrderCollection"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "OData filter expression (e.g., Status eq 'Released' and PostingDate ge datetime'2024-01-01T00:00:00')."
+                },
+                {
+                  "disabled": false,
+                  "key": "$select",
+                  "value": "<string>",
+                  "description": "Comma-separated list of properties to include in the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "$expand",
+                  "value": "<string>",
+                  "description": "Comma-separated navigation properties to expand inline."
+                },
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "20",
+                  "description": "Maximum number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "$skip",
+                  "value": "0",
+                  "description": "Number of records to skip for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "$format",
+                  "value": "json",
+                  "description": "Response format. Use 'json' for JSON output."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your SAP Business ByDesign tenant hostname",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "be05e518-6be9-46e9-84ab-2c761989453b",
+              "name": "Collection of sales order records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sap",
+                    "byd",
+                    "odata",
+                    "cust",
+                    "v1",
+                    "khsalesorder",
+                    "SalesOrderCollection"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$expand",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "20"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "$format",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your SAP Business ByDesign tenant hostname",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"d\": {\n    \"results\": [\n      {\n        \"ObjectID\": \"string\",\n        \"ID\": \"string\",\n        \"BuyerID\": \"string\",\n        \"BillToPartyID\": \"string\",\n        \"ShipToPartyID\": \"string\",\n        \"StatusCode\": \"string\",\n        \"NetAmount\": \"string\",\n        \"CurrencyCode\": \"string\",\n        \"CreationDateTime\": \"1977-11-15T21:13:52.061Z\"\n      },\n      {\n        \"ObjectID\": \"string\",\n        \"ID\": \"string\",\n        \"BuyerID\": \"string\",\n        \"BillToPartyID\": \"string\",\n        \"ShipToPartyID\": \"string\",\n        \"StatusCode\": \"string\",\n        \"NetAmount\": \"string\",\n        \"CurrencyCode\": \"string\",\n        \"CreationDateTime\": \"2010-12-03T09:24:47.131Z\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "8e74047e-1f98-44e6-b141-0b3264841dec",
+              "name": "Unauthorized — invalid or missing credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sap",
+                    "byd",
+                    "odata",
+                    "cust",
+                    "v1",
+                    "khsalesorder",
+                    "SalesOrderCollection"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$expand",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "20"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "$format",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your SAP Business ByDesign tenant hostname",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": {\n      \"lang\": \"string\",\n      \"value\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "861d0a10-c3c5-4ebe-9a48-104c67182b92",
+          "name": "Get sales order by ID",
+          "request": {
+            "name": "Get sales order by ID",
+            "description": {
+              "content": "Retrieve a single sales order by its ObjectID.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sap",
+                "byd",
+                "odata",
+                "cust",
+                "v1",
+                "khsalesorder",
+                "SalesOrderCollection('{{ObjectID}}')"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$select",
+                  "value": "<string>",
+                  "description": "Comma-separated list of properties to include in the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "$expand",
+                  "value": "<string>",
+                  "description": "Comma-separated navigation properties to expand inline."
+                },
+                {
+                  "disabled": false,
+                  "key": "$format",
+                  "value": "json",
+                  "description": "Response format. Use 'json' for JSON output."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your SAP Business ByDesign tenant hostname",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ba2c4975-2fcf-413d-ac1f-95239d375948",
+              "name": "Sales order record.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sap",
+                    "byd",
+                    "odata",
+                    "cust",
+                    "v1",
+                    "khsalesorder",
+                    "SalesOrderCollection('{{ObjectID}}')"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$select",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$expand",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$format",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your SAP Business ByDesign tenant hostname",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"d\": {\n    \"ObjectID\": \"string\",\n    \"ID\": \"string\",\n    \"BuyerID\": \"string\",\n    \"BillToPartyID\": \"string\",\n    \"ShipToPartyID\": \"string\",\n    \"StatusCode\": \"string\",\n    \"NetAmount\": \"string\",\n    \"CurrencyCode\": \"string\",\n    \"CreationDateTime\": \"2020-05-21T06:43:12.564Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "86ee0f2c-00f7-42b6-a425-0459e2fa5f06",
+              "name": "Unauthorized — invalid or missing credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sap",
+                    "byd",
+                    "odata",
+                    "cust",
+                    "v1",
+                    "khsalesorder",
+                    "SalesOrderCollection('{{ObjectID}}')"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$select",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$expand",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$format",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your SAP Business ByDesign tenant hostname",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": {\n      \"lang\": \"string\",\n      \"value\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "0a26bfc7-dd0a-4d54-ad42-5d997f78f6a1",
+              "name": "Not found — the requested entity does not exist.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sap",
+                    "byd",
+                    "odata",
+                    "cust",
+                    "v1",
+                    "khsalesorder",
+                    "SalesOrderCollection('{{ObjectID}}')"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$select",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$expand",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$format",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your SAP Business ByDesign tenant hostname",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Not Found",
+              "code": 404,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": {\n      \"lang\": \"string\",\n      \"value\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "af037be7-5a37-441e-b52a-df5f185ef46d",
+          "name": "Query customer quotes",
+          "request": {
+            "name": "Query customer quotes",
+            "description": {
+              "content": "Query sales quotes (customer quotes) with OData filter parameters.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sap",
+                "byd",
+                "odata",
+                "cust",
+                "v1",
+                "khcustomerquote",
+                "CustomerQuoteCollection"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "OData filter expression (e.g., Status eq 'Released' and PostingDate ge datetime'2024-01-01T00:00:00')."
+                },
+                {
+                  "disabled": false,
+                  "key": "$select",
+                  "value": "<string>",
+                  "description": "Comma-separated list of properties to include in the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "$expand",
+                  "value": "<string>",
+                  "description": "Comma-separated navigation properties to expand inline."
+                },
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "20",
+                  "description": "Maximum number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "$skip",
+                  "value": "0",
+                  "description": "Number of records to skip for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "$format",
+                  "value": "json",
+                  "description": "Response format. Use 'json' for JSON output."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your SAP Business ByDesign tenant hostname",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "0975f4e2-ede2-4d98-a0ee-8e5bd6bda1fc",
+              "name": "Collection of customer quote records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sap",
+                    "byd",
+                    "odata",
+                    "cust",
+                    "v1",
+                    "khcustomerquote",
+                    "CustomerQuoteCollection"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$expand",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "20"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "$format",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your SAP Business ByDesign tenant hostname",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"d\": {\n    \"results\": [\n      {\n        \"ObjectID\": \"string\",\n        \"ID\": \"string\",\n        \"BuyerPartyID\": \"string\",\n        \"StatusCode\": \"string\",\n        \"NetAmount\": \"string\",\n        \"CurrencyCode\": \"string\",\n        \"ExpirationDate\": \"1991-10-25\",\n        \"CreationDateTime\": \"2008-09-10T16:16:54.924Z\"\n      },\n      {\n        \"ObjectID\": \"string\",\n        \"ID\": \"string\",\n        \"BuyerPartyID\": \"string\",\n        \"StatusCode\": \"string\",\n        \"NetAmount\": \"string\",\n        \"CurrencyCode\": \"string\",\n        \"ExpirationDate\": \"2008-07-05\",\n        \"CreationDateTime\": \"2004-03-16T19:08:47.149Z\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "4b0b92dd-0c37-4dbb-b4cf-03a0732b9b18",
+              "name": "Unauthorized — invalid or missing credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sap",
+                    "byd",
+                    "odata",
+                    "cust",
+                    "v1",
+                    "khcustomerquote",
+                    "CustomerQuoteCollection"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$expand",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "20"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "$format",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your SAP Business ByDesign tenant hostname",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": {\n      \"lang\": \"string\",\n      \"value\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "9cee970a-45d8-4ab5-adc9-15a6638a682f",
+          "name": "Create customer quote",
+          "request": {
+            "name": "Create customer quote",
+            "description": {
+              "content": "Creates a new sales quote. Prices are automatically determined based on configured price lists.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sap",
+                "byd",
+                "odata",
+                "cust",
+                "v1",
+                "khcustomerquote",
+                "CustomerQuoteCollection"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "description": "Your SAP Business ByDesign tenant hostname",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CSRF token obtained from a prior GET request with x-csrf-token: Fetch.",
+                "key": "x-csrf-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null,
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"BuyerPartyID\": \"<string>\",\n  \"ExpirationDate\": \"<date>\",\n  \"Note\": \"<string>\"\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": [
+            {
+              "id": "6ff67cc9-712b-482c-807e-802c389fd581",
+              "name": "Customer quote created.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sap",
+                    "byd",
+                    "odata",
+                    "cust",
+                    "v1",
+                    "khcustomerquote",
+                    "CustomerQuoteCollection"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your SAP Business ByDesign tenant hostname",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF token obtained from a prior GET request with x-csrf-token: Fetch.",
+                    "key": "x-csrf-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"BuyerPartyID\": \"<string>\",\n  \"ExpirationDate\": \"<date>\",\n  \"Note\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"d\": {\n    \"ObjectID\": \"string\",\n    \"ID\": \"string\",\n    \"BuyerPartyID\": \"string\",\n    \"StatusCode\": \"string\",\n    \"NetAmount\": \"string\",\n    \"CurrencyCode\": \"string\",\n    \"ExpirationDate\": \"1978-11-25\",\n    \"CreationDateTime\": \"1988-08-02T16:28:36.079Z\"\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "41b69074-73be-42a9-8a08-d387175fcd25",
+              "name": "Bad request — invalid OData query parameters or request body.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sap",
+                    "byd",
+                    "odata",
+                    "cust",
+                    "v1",
+                    "khcustomerquote",
+                    "CustomerQuoteCollection"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your SAP Business ByDesign tenant hostname",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF token obtained from a prior GET request with x-csrf-token: Fetch.",
+                    "key": "x-csrf-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"BuyerPartyID\": \"<string>\",\n  \"ExpirationDate\": \"<date>\",\n  \"Note\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": {\n      \"lang\": \"string\",\n      \"value\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "e2bddc7a-ba99-4148-93f1-ec375431fea2",
+              "name": "Unauthorized — invalid or missing credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sap",
+                    "byd",
+                    "odata",
+                    "cust",
+                    "v1",
+                    "khcustomerquote",
+                    "CustomerQuoteCollection"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "description": "Your SAP Business ByDesign tenant hostname",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF token obtained from a prior GET request with x-csrf-token: Fetch.",
+                    "key": "x-csrf-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"BuyerPartyID\": \"<string>\",\n  \"ExpirationDate\": \"<date>\",\n  \"Note\": \"<string>\"\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                }
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": {\n      \"lang\": \"string\",\n      \"value\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "141ed452-ccb8-4661-89e4-e8a1ff521101",
+          "name": "Query customer invoices",
+          "request": {
+            "name": "Query customer invoices",
+            "description": {
+              "content": "Query customer invoices using OData filter parameters. Supports filtering by date, customer, status, and other invoice attributes.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sap",
+                "byd",
+                "odata",
+                "cust",
+                "v1",
+                "khcustomerinvoice",
+                "CustomerInvoiceQueryByElements2"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "$filter",
+                  "value": "<string>",
+                  "description": "OData filter expression (e.g., Status eq 'Released' and PostingDate ge datetime'2024-01-01T00:00:00')."
+                },
+                {
+                  "disabled": false,
+                  "key": "$select",
+                  "value": "<string>",
+                  "description": "Comma-separated list of properties to include in the response."
+                },
+                {
+                  "disabled": false,
+                  "key": "$expand",
+                  "value": "<string>",
+                  "description": "Comma-separated navigation properties to expand inline."
+                },
+                {
+                  "disabled": false,
+                  "key": "$top",
+                  "value": "20",
+                  "description": "Maximum number of records to return."
+                },
+                {
+                  "disabled": false,
+                  "key": "$skip",
+                  "value": "0",
+                  "description": "Number of records to skip for pagination."
+                },
+                {
+                  "disabled": false,
+                  "key": "$format",
+                  "value": "json",
+                  "description": "Response format. Use 'json' for JSON output."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your SAP Business ByDesign tenant hostname",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "aa086782-98c2-4346-93ed-7eef69efca37",
+              "name": "Collection of customer invoice records.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sap",
+                    "byd",
+                    "odata",
+                    "cust",
+                    "v1",
+                    "khcustomerinvoice",
+                    "CustomerInvoiceQueryByElements2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$expand",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "20"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "$format",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your SAP Business ByDesign tenant hostname",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"d\": {\n    \"results\": [\n      {\n        \"ObjectID\": \"string\",\n        \"ID\": \"string\",\n        \"BillToPartyID\": \"string\",\n        \"StatusCode\": \"string\",\n        \"GrossAmount\": \"string\",\n        \"NetAmount\": \"string\",\n        \"CurrencyCode\": \"string\",\n        \"PostingDate\": \"2000-10-19\"\n      },\n      {\n        \"ObjectID\": \"string\",\n        \"ID\": \"string\",\n        \"BillToPartyID\": \"string\",\n        \"StatusCode\": \"string\",\n        \"GrossAmount\": \"string\",\n        \"NetAmount\": \"string\",\n        \"CurrencyCode\": \"string\",\n        \"PostingDate\": \"1995-09-18\"\n      }\n    ]\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "a1d5aea5-6b38-46e9-b76c-d2d9d6823fb0",
+              "name": "Unauthorized — invalid or missing credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sap",
+                    "byd",
+                    "odata",
+                    "cust",
+                    "v1",
+                    "khcustomerinvoice",
+                    "CustomerInvoiceQueryByElements2"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "$filter",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$select",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$expand",
+                      "value": "<string>"
+                    },
+                    {
+                      "key": "$top",
+                      "value": "20"
+                    },
+                    {
+                      "key": "$skip",
+                      "value": "0"
+                    },
+                    {
+                      "key": "$format",
+                      "value": "json"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your SAP Business ByDesign tenant hostname",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": {\n      \"lang\": \"string\",\n      \"value\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "473bd783-708c-4230-9be0-0e63ec299418",
+          "name": "Release customer invoice",
+          "request": {
+            "name": "Release customer invoice",
+            "description": {
+              "content": "Releases (posts) a customer invoice, making it legally binding and initiating the accounts receivable process.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "sap",
+                "byd",
+                "odata",
+                "cust",
+                "v1",
+                "khcustomerinvoice",
+                "Release"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "ObjectID",
+                  "value": "<string>",
+                  "description": "(Required) ObjectID of the customer invoice to release, enclosed in single quotes."
+                }
+              ],
+              "variable": [
+                {
+                  "description": "Your SAP Business ByDesign tenant hostname",
+                  "type": "any",
+                  "value": "{{tenant}}",
+                  "key": "tenant"
+                }
+              ]
+            },
+            "header": [
+              {
+                "disabled": false,
+                "description": "(Required) CSRF token obtained from a prior GET request with x-csrf-token: Fetch.",
+                "key": "x-csrf-token",
+                "value": "<string>"
+              },
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "a3381578-1022-4e26-92e3-5fbdb09e5ad4",
+              "name": "Customer invoice released successfully.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sap",
+                    "byd",
+                    "odata",
+                    "cust",
+                    "v1",
+                    "khcustomerinvoice",
+                    "Release"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ObjectID",
+                      "value": "'00163E10-4A13-1EE1-A3C9-BF3D3B279F2A'"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your SAP Business ByDesign tenant hostname",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF token obtained from a prior GET request with x-csrf-token: Fetch.",
+                    "key": "x-csrf-token",
+                    "value": "<string>"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            },
+            {
+              "id": "f9c18c39-c6b9-4552-8879-c16b62e43c5d",
+              "name": "Bad request — invalid OData query parameters or request body.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sap",
+                    "byd",
+                    "odata",
+                    "cust",
+                    "v1",
+                    "khcustomerinvoice",
+                    "Release"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ObjectID",
+                      "value": "'00163E10-4A13-1EE1-A3C9-BF3D3B279F2A'"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your SAP Business ByDesign tenant hostname",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF token obtained from a prior GET request with x-csrf-token: Fetch.",
+                    "key": "x-csrf-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Bad Request",
+              "code": 400,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": {\n      \"lang\": \"string\",\n      \"value\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            },
+            {
+              "id": "2a463644-3588-4623-9f67-c1478d440d40",
+              "name": "Unauthorized — invalid or missing credentials.",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "sap",
+                    "byd",
+                    "odata",
+                    "cust",
+                    "v1",
+                    "khcustomerinvoice",
+                    "Release"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "ObjectID",
+                      "value": "'00163E10-4A13-1EE1-A3C9-BF3D3B279F2A'"
+                    }
+                  ],
+                  "variable": [
+                    {
+                      "description": "Your SAP Business ByDesign tenant hostname",
+                      "type": "any",
+                      "value": "{{tenant}}",
+                      "key": "tenant"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: basic",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Basic <credentials>"
+                  },
+                  {
+                    "disabled": false,
+                    "description": "(Required) CSRF token obtained from a prior GET request with x-csrf-token: Fetch.",
+                    "key": "x-csrf-token",
+                    "value": "<string>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "Unauthorized",
+              "code": 401,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"error\": {\n    \"code\": \"string\",\n    \"message\": {\n      \"lang\": \"string\",\n      \"value\": \"string\"\n    }\n  }\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "description": {
+        "content": "Your SAP Business ByDesign tenant hostname",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "my-tenant",
+      "key": "tenant"
+    },
+    {
+      "type": "string",
+      "value": "https://{{tenant}}.bydesign.cloud.sap",
+      "key": "baseUrl"
+    },
+    {
+      "disabled": false,
+      "description": {
+        "content": "(Required) The unique ObjectID of the sales order.",
+        "type": "text/plain"
+      },
+      "type": "any",
+      "value": "<string>",
+      "key": "ObjectID"
+    }
+  ],
+  "auth": {
+    "type": "basic",
+    "basic": [
+      {
+        "key": "username",
+        "value": "{{basicAuthUsername}}"
+      },
+      {
+        "key": "password",
+        "value": "{{basicAuthPassword}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "e99b3fb3-29b4-41c1-942d-a56778ed2a4a",
+    "name": "SAP Business ByDesign OData Analytics Sales API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "OData v2 REST API for SAP Business ByDesign — a cloud ERP solution for midmarket companies. Provides access to business objects and analytics across financials, CRM, procurement, supply chain, project management, and HR. Supports CRUD operations and custom OData services via the /sap/byd/odata/cust/v1/ namespace, plus pre-built analytics services via /sap/byd/odata/{service_name}.svc/.\n\nContact Support:\n Name: SAP Support",
+      "type": "text/plain"
+    }
+  }
+}

@@ -1,0 +1,255 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SAP Business ByDesign OData Analytics Sales API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Sales",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query sales orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.bydesign.cloud.sap/sap/byd/odata/cust/v1/khsalesorder/SalesOrderCollection",
+            "params": [
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter expression (e.g., Status eq 'Released' and PostingDate ge datetime'2024-01-01T00:00:00')."
+              },
+              {
+                "name": "$select",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of properties to include in the response."
+              },
+              {
+                "name": "$expand",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated navigation properties to expand inline."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return."
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination."
+              },
+              {
+                "name": "$format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Use 'json' for JSON output."
+              }
+            ]
+          },
+          "docs": "Query sales orders with OData filter, select, expand, and orderby parameters."
+        },
+        {
+          "info": {
+            "name": "Get sales order by ID",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.bydesign.cloud.sap/sap/byd/odata/cust/v1/khsalesorder/SalesOrderCollection(':ObjectID')",
+            "params": [
+              {
+                "name": "ObjectID",
+                "value": "",
+                "type": "path",
+                "description": "The unique ObjectID of the sales order."
+              },
+              {
+                "name": "$select",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of properties to include in the response."
+              },
+              {
+                "name": "$expand",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated navigation properties to expand inline."
+              },
+              {
+                "name": "$format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Use 'json' for JSON output."
+              }
+            ]
+          },
+          "docs": "Retrieve a single sales order by its ObjectID."
+        },
+        {
+          "info": {
+            "name": "Query customer quotes",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.bydesign.cloud.sap/sap/byd/odata/cust/v1/khcustomerquote/CustomerQuoteCollection",
+            "params": [
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter expression (e.g., Status eq 'Released' and PostingDate ge datetime'2024-01-01T00:00:00')."
+              },
+              {
+                "name": "$select",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of properties to include in the response."
+              },
+              {
+                "name": "$expand",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated navigation properties to expand inline."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return."
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination."
+              },
+              {
+                "name": "$format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Use 'json' for JSON output."
+              }
+            ]
+          },
+          "docs": "Query sales quotes (customer quotes) with OData filter parameters."
+        },
+        {
+          "info": {
+            "name": "Create customer quote",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.bydesign.cloud.sap/sap/byd/odata/cust/v1/khcustomerquote/CustomerQuoteCollection",
+            "headers": [
+              {
+                "name": "x-csrf-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new sales quote. Prices are automatically determined based on configured price lists."
+        },
+        {
+          "info": {
+            "name": "Query customer invoices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.bydesign.cloud.sap/sap/byd/odata/cust/v1/khcustomerinvoice/CustomerInvoiceQueryByElements2",
+            "params": [
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter expression (e.g., Status eq 'Released' and PostingDate ge datetime'2024-01-01T00:00:00')."
+              },
+              {
+                "name": "$select",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of properties to include in the response."
+              },
+              {
+                "name": "$expand",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated navigation properties to expand inline."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return."
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination."
+              },
+              {
+                "name": "$format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Use 'json' for JSON output."
+              }
+            ]
+          },
+          "docs": "Query customer invoices using OData filter parameters. Supports filtering by date, customer, status, and other invoice attributes."
+        },
+        {
+          "info": {
+            "name": "Release customer invoice",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.bydesign.cloud.sap/sap/byd/odata/cust/v1/khcustomerinvoice/Release",
+            "headers": [
+              {
+                "name": "x-csrf-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "ObjectID",
+                "value": "",
+                "type": "query",
+                "description": "ObjectID of the customer invoice to release, enclosed in single quotes."
+              }
+            ]
+          },
+          "docs": "Releases (posts) a customer invoice, making it legally binding and initiating the accounts receivable process."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

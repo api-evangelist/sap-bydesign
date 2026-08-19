@@ -1,0 +1,111 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SAP Business ByDesign OData Analytics CRM API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "CRM",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query leads",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.bydesign.cloud.sap/sap/byd/odata/cust/v1/khlead/LeadCollection",
+            "params": [
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter expression (e.g., Status eq 'Released' and PostingDate ge datetime'2024-01-01T00:00:00')."
+              },
+              {
+                "name": "$select",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of properties to include in the response."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return."
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination."
+              },
+              {
+                "name": "$format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Use 'json' for JSON output."
+              }
+            ]
+          },
+          "docs": "Query CRM lead records with optional OData filter parameters."
+        },
+        {
+          "info": {
+            "name": "Query opportunities",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.bydesign.cloud.sap/sap/byd/odata/cust/v1/khopportunity/OpportunityCollection",
+            "params": [
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter expression (e.g., Status eq 'Released' and PostingDate ge datetime'2024-01-01T00:00:00')."
+              },
+              {
+                "name": "$select",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of properties to include in the response."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return."
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination."
+              },
+              {
+                "name": "$format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Use 'json' for JSON output."
+              }
+            ]
+          },
+          "docs": "Query CRM opportunity records."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,117 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SAP Business ByDesign OData Analytics Procurement API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Procurement",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query purchase orders",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.bydesign.cloud.sap/sap/byd/odata/cust/v1/khpurchaseorder/PurchaseOrderCollection",
+            "params": [
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter expression (e.g., Status eq 'Released' and PostingDate ge datetime'2024-01-01T00:00:00')."
+              },
+              {
+                "name": "$select",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of properties to include in the response."
+              },
+              {
+                "name": "$expand",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated navigation properties to expand inline."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return."
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination."
+              },
+              {
+                "name": "$format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Use 'json' for JSON output."
+              }
+            ]
+          },
+          "docs": "Query purchase orders with optional OData filters."
+        },
+        {
+          "info": {
+            "name": "Query supplier invoices",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.bydesign.cloud.sap/sap/byd/odata/cust/v1/khsupplierinvoice/SupplierInvoiceCollection",
+            "params": [
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter expression (e.g., Status eq 'Released' and PostingDate ge datetime'2024-01-01T00:00:00')."
+              },
+              {
+                "name": "$select",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of properties to include in the response."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return."
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination."
+              },
+              {
+                "name": "$format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Use 'json' for JSON output."
+              }
+            ]
+          },
+          "docs": "Query supplier invoices with OData filter parameters."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,210 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SAP Business ByDesign OData Analytics Supply Chain API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Supply Chain",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Query outbound deliveries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.bydesign.cloud.sap/sap/byd/odata/cust/v1/khoutbounddelivery/OutboundDeliveryCollection",
+            "params": [
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter expression (e.g., Status eq 'Released' and PostingDate ge datetime'2024-01-01T00:00:00')."
+              },
+              {
+                "name": "$select",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of properties to include in the response."
+              },
+              {
+                "name": "$expand",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated navigation properties to expand inline."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return."
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination."
+              },
+              {
+                "name": "$format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Use 'json' for JSON output."
+              }
+            ]
+          },
+          "docs": "Query outbound delivery records."
+        },
+        {
+          "info": {
+            "name": "Release outbound delivery",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.bydesign.cloud.sap/sap/byd/odata/cust/v1/khoutbounddelivery/Release",
+            "headers": [
+              {
+                "name": "x-csrf-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "ObjectID",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Releases an outbound delivery for picking and goods issue processing."
+        },
+        {
+          "info": {
+            "name": "Post goods issue",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.bydesign.cloud.sap/sap/byd/odata/cust/v1/khoutbounddeliveryrequest/ItemPostGoodsIssue",
+            "headers": [
+              {
+                "name": "x-csrf-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "ObjectID",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Posts a goods issue for an outbound delivery request item, reducing inventory and triggering logistics and financial postings."
+        },
+        {
+          "info": {
+            "name": "Query inbound deliveries",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.bydesign.cloud.sap/sap/byd/odata/cust/v1/khinbounddelivery/InboundDeliveryCollection",
+            "params": [
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter expression (e.g., Status eq 'Released' and PostingDate ge datetime'2024-01-01T00:00:00')."
+              },
+              {
+                "name": "$select",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of properties to include in the response."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return."
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination."
+              },
+              {
+                "name": "$format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Use 'json' for JSON output."
+              }
+            ]
+          },
+          "docs": "Query inbound delivery and customer return notification records."
+        },
+        {
+          "info": {
+            "name": "Create inbound delivery / customer return notification",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.bydesign.cloud.sap/sap/byd/odata/cust/v1/khinbounddelivery/InboundDeliveryCollection",
+            "headers": [
+              {
+                "name": "x-csrf-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new inbound delivery or customer return notification record."
+        },
+        {
+          "info": {
+            "name": "Post goods receipt",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.bydesign.cloud.sap/sap/byd/odata/cust/v1/khinbounddelivery/PostGoodsReceipt",
+            "headers": [
+              {
+                "name": "x-csrf-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "ObjectID",
+                "value": "",
+                "type": "query"
+              }
+            ]
+          },
+          "docs": "Posts a goods receipt for an inbound delivery, increasing inventory and triggering financial postings."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

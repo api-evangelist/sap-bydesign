@@ -1,0 +1,150 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SAP Business ByDesign OData Analytics Master Data API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Master Data",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get OData entity sets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.bydesign.cloud.sap/sap/byd/odata/cust/v1/:service/",
+            "headers": [
+              {
+                "name": "x-csrf-token",
+                "value": ""
+              }
+            ],
+            "params": [
+              {
+                "name": "service",
+                "value": "",
+                "type": "path",
+                "description": "The custom OData service name (e.g., vmumaterial, khsalesorder, khcustomer)."
+              }
+            ]
+          },
+          "docs": "Returns the OData service document listing all entity sets available in the specified custom OData service. Also returns an XSRF token in the response header for subsequent write operations."
+        },
+        {
+          "info": {
+            "name": "Get OData metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.bydesign.cloud.sap/sap/byd/odata/cust/v1/:service/$metadata",
+            "params": [
+              {
+                "name": "service",
+                "value": "",
+                "type": "path"
+              },
+              {
+                "name": "sap-label",
+                "value": "",
+                "type": "query",
+                "description": "Include SAP UI labels in the metadata."
+              },
+              {
+                "name": "sap-language",
+                "value": "",
+                "type": "query",
+                "description": "Language code for labels (e.g., EN)."
+              }
+            ]
+          },
+          "docs": "Returns the EDMX metadata document describing all entity types, entity sets, associations, and function imports for the specified custom OData service."
+        },
+        {
+          "info": {
+            "name": "Query materials",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.bydesign.cloud.sap/sap/byd/odata/cust/v1/vmumaterial/MaterialCollection",
+            "params": [
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter expression (e.g., Status eq 'Released' and PostingDate ge datetime'2024-01-01T00:00:00')."
+              },
+              {
+                "name": "$select",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of properties to include in the response."
+              },
+              {
+                "name": "$expand",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated navigation properties to expand inline."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return."
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination."
+              },
+              {
+                "name": "$format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Use 'json' for JSON output."
+              }
+            ]
+          },
+          "docs": "Query material master data with optional OData filter, select, expand, and orderby parameters. Supports filtering on general data, purchasing data, logistics data, planning data, sales data, and valuation data."
+        },
+        {
+          "info": {
+            "name": "Create material",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://{tenant}.bydesign.cloud.sap/sap/byd/odata/cust/v1/vmumaterial/MaterialCollection",
+            "headers": [
+              {
+                "name": "x-csrf-token",
+                "value": ""
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Creates a new material master record in SAP Business ByDesign."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,96 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "SAP Business ByDesign OData Analytics API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "basic",
+      "username": "{{username}}",
+      "password": "{{password}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Analytics",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Get Business Analytics metadata",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.bydesign.cloud.sap/sap/byd/odata/ana_businessanalytics_analytics.svc/$metadata"
+          },
+          "docs": "Returns metadata for the Business Analytics OData service, describing available report entity sets and their characteristics and key figures."
+        },
+        {
+          "info": {
+            "name": "Query Business Analytics report",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.bydesign.cloud.sap/sap/byd/odata/ana_businessanalytics_analytics.svc/:ReportEntitySet",
+            "params": [
+              {
+                "name": "ReportEntitySet",
+                "value": "",
+                "type": "path",
+                "description": "The report entity set identifier (e.g., RP{ReportID}QueryResults)."
+              },
+              {
+                "name": "$filter",
+                "value": "",
+                "type": "query",
+                "description": "OData filter expression (e.g., Status eq 'Released' and PostingDate ge datetime'2024-01-01T00:00:00')."
+              },
+              {
+                "name": "$select",
+                "value": "",
+                "type": "query",
+                "description": "Comma-separated list of properties to include in the response."
+              },
+              {
+                "name": "$top",
+                "value": "",
+                "type": "query",
+                "description": "Maximum number of records to return."
+              },
+              {
+                "name": "$skip",
+                "value": "",
+                "type": "query",
+                "description": "Number of records to skip for pagination."
+              },
+              {
+                "name": "$format",
+                "value": "",
+                "type": "query",
+                "description": "Response format. Use 'json' for JSON output."
+              }
+            ]
+          },
+          "docs": "Query data from a Business Analytics report entity set. Filter by characteristics such as posting date, fiscal period, and report-specific selection parameters. Supports $select for choosing characteristics and key figures, and $filter for restricting result rows."
+        },
+        {
+          "info": {
+            "name": "List all OData analytics services",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://{tenant}.bydesign.cloud.sap/sap/byd/odata/"
+          },
+          "docs": "Returns all available OData analytics service endpoints in SAP Business ByDesign."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}
