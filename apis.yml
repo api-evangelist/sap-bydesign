@@ -22,6 +22,18 @@ specificationVersion: '0.23'
 tags:
   - ERP
   - Cloud
+  - Mid-Market
+  - Financials
+  - CRM
+  - Procurement
+  - Supply Chain
+  - Project Management
+  - OData
+  - SOAP
+  - SAP
+tags_raw:
+  - ERP
+  - Cloud
   - Midmarket
   - Financials
   - CRM
@@ -172,6 +184,8 @@ apis:
     https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/sap-business-bydesign-odata-api-examples/ba-p/13400614
   baseURL: https://{tenant}.bydesign.cloud.sap/sap/byd/odata/v1
   tags:
+  - Project
+  tags_raw:
   - Projects
   properties:
   - type: OpenAPI
