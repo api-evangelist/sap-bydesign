@@ -4,6 +4,18 @@ description: SAP Business ByDesign is a cloud ERP solution for midmarket compani
   web service APIs for managing financials, CRM, procurement, supply chain, project management, and analytics. APIs
   support full CRUD operations on business objects, analytical data extraction, KPI access, and end-to-end business
   process automation across lead-to-quote, order-to-cash, and procure-to-pay workflows.
+deliveryModel:
+  model: saas
+  open_source: false
+  commercial: true
+  callable_host: true
+  label: Hosted service · you call their endpoint
+  confidence: high
+  source:
+  - openapi
+  - pricing
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: paid
   onboarding: self-serve
