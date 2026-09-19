@@ -38,7 +38,7 @@ tags:
 - ERP
 - Cloud
 - Mid-Market
-- Financials
+- Financial
 - CRM
 - Procurement
 - Supply Chain
@@ -68,6 +68,13 @@ apis:
   humanURL: https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/sap-business-bydesign-odata-api-examples/ba-p/13400614
   baseURL: https://{tenant}.bydesign.cloud.sap/sap/byd/odata/v1
   tags:
+  - OData
+  - Business Objects
+  - CRUD
+  - Financial
+  - Sales
+  - Procurement
+  tags_raw:
   - OData
   - Business Objects
   - CRUD
@@ -116,6 +123,13 @@ apis:
   - SOAP
   - Web Services
   - Integration
+  - Financial
+  - Procurement
+  - CRM
+  tags_raw:
+  - SOAP
+  - Web Services
+  - Integration
   - Financials
   - Procurement
   - CRM
@@ -151,6 +165,8 @@ apis:
   humanURL: https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/sap-business-bydesign-odata-api-examples/ba-p/13400614
   baseURL: https://{tenant}.bydesign.cloud.sap/sap/byd/odata/v1
   tags:
+  - Financial
+  tags_raw:
   - Financials
   properties:
   - type: OpenAPI
