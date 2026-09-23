@@ -1,4 +1,4 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
   title: SAP Business ByDesign OData Analytics API
   description: OData v2 REST API for SAP Business ByDesign — a cloud ERP solution for midmarket companies. Provides access to business objects and analytics across financials, CRM, procurement, supply chain, project management, and HR. Supports CRUD operations and custom OData services via the /sap/byd/odata/cust/v1/ namespace, plus pre-built analytics services via /sap/byd/odata/{service_name}.svc/.
@@ -97,7 +97,21 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
+  responses:
+    Unauthorized:
+      description: Unauthorized — invalid or missing credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ODataError'
   parameters:
+    SelectParam:
+      name: $select
+      in: query
+      required: false
+      description: Comma-separated list of properties to include in the response.
+      schema:
+        type: string
     FormatParam:
       name: $format
       in: query
@@ -109,11 +123,20 @@ components:
         - json
         - xml
         default: json
-    SelectParam:
-      name: $select
+    SkipParam:
+      name: $skip
       in: query
       required: false
-      description: Comma-separated list of properties to include in the response.
+      description: Number of records to skip for pagination.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
+    FilterParam:
+      name: $filter
+      in: query
+      required: false
+      description: OData filter expression (e.g., Status eq 'Released' and PostingDate ge datetime'2024-01-01T00:00:00').
       schema:
         type: string
     TopParam:
@@ -126,22 +149,6 @@ components:
         minimum: 1
         maximum: 1000
         default: 20
-    FilterParam:
-      name: $filter
-      in: query
-      required: false
-      description: OData filter expression (e.g., Status eq 'Released' and PostingDate ge datetime'2024-01-01T00:00:00').
-      schema:
-        type: string
-    SkipParam:
-      name: $skip
-      in: query
-      required: false
-      description: Number of records to skip for pagination.
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
   schemas:
     ODataServiceDocument:
       type: object
@@ -168,13 +175,6 @@ components:
                   type: string
                 value:
                   type: string
-  responses:
-    Unauthorized:
-      description: Unauthorized — invalid or missing credentials.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ODataError'
   securitySchemes:
     basicAuth:
       type: http
