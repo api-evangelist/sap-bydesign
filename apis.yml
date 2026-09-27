@@ -6,15 +6,19 @@ description: SAP Business ByDesign is a cloud ERP solution for midmarket compani
   process automation across lead-to-quote, order-to-cash, and procure-to-pay workflows.
 deliveryModel:
   model: saas
-  open_source: false
+  license_evidence:
+    not_product:
+    - sap-samples/byd-api-samples
+  open_source: unknown
   commercial: true
   callable_host: true
   label: Hosted service · you call their endpoint
-  confidence: high
+  confidence: low
   source:
   - openapi
   - pricing
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: paid
@@ -38,7 +42,7 @@ tags:
 - ERP
 - Cloud
 - Mid-Market
-- Financial
+- Finance
 - CRM
 - Procurement
 - Supply Chain
@@ -58,6 +62,7 @@ tags_raw:
 - OData
 - SOAP
 - SAP
+- Financial
 apis:
 - aid: sap-bydesign:odata-business-objects
   name: SAP Business ByDesign OData Business Objects API
@@ -71,7 +76,7 @@ apis:
   - OData
   - Business Objects
   - CRUD
-  - Financial
+  - Finance
   - Sales
   - Procurement
   tags_raw:
@@ -81,6 +86,7 @@ apis:
   - Financials
   - Sales
   - Procurement
+  - Financial
   properties:
   - type: Documentation
     url: https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/sap-business-bydesign-odata-api-examples/ba-p/13400614
@@ -123,7 +129,7 @@ apis:
   - SOAP
   - Web Services
   - Integration
-  - Financial
+  - Finance
   - Procurement
   - CRM
   tags_raw:
@@ -133,6 +139,7 @@ apis:
   - Financials
   - Procurement
   - CRM
+  - Financial
   properties:
   - type: Documentation
     url: https://help.sap.com/docs/SAP_BUSINESS_BYDESIGN/34de7a7c1a7e43178141074817068fb1/37faab74f63049d7816184add8077065.html
@@ -165,9 +172,10 @@ apis:
   humanURL: https://community.sap.com/t5/enterprise-resource-planning-blog-posts-by-sap/sap-business-bydesign-odata-api-examples/ba-p/13400614
   baseURL: https://{tenant}.bydesign.cloud.sap/sap/byd/odata/v1
   tags:
-  - Financial
+  - Finance
   tags_raw:
   - Financials
+  - Financial
   properties:
   - type: OpenAPI
     url: openapi/sap-bydesign-financials-api-openapi.yml
