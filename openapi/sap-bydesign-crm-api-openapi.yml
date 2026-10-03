@@ -103,6 +103,22 @@ components:
                   type: string
                 value:
                   type: string
+    Lead:
+      type: object
+      description: SAP Business ByDesign CRM lead.
+      properties:
+        ObjectID:
+          type: string
+        ID:
+          type: string
+        ProspectPartyName:
+          type: string
+        StatusCode:
+          type: string
+        QualificationLevelCode:
+          type: string
+        OwnerEmployeeID:
+          type: string
     Opportunity:
       type: object
       description: SAP Business ByDesign CRM opportunity.
@@ -124,22 +140,6 @@ components:
         CloseDate:
           type: string
           format: date
-    Lead:
-      type: object
-      description: SAP Business ByDesign CRM lead.
-      properties:
-        ObjectID:
-          type: string
-        ID:
-          type: string
-        ProspectPartyName:
-          type: string
-        StatusCode:
-          type: string
-        QualificationLevelCode:
-          type: string
-        OwnerEmployeeID:
-          type: string
   parameters:
     SkipParam:
       name: $skip
@@ -150,6 +150,17 @@ components:
         type: integer
         minimum: 0
         default: 0
+    FormatParam:
+      name: $format
+      in: query
+      required: false
+      description: Response format. Use 'json' for JSON output.
+      schema:
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
     FilterParam:
       name: $filter
       in: query
@@ -174,17 +185,6 @@ components:
       description: Comma-separated list of properties to include in the response.
       schema:
         type: string
-    FormatParam:
-      name: $format
-      in: query
-      required: false
-      description: Response format. Use 'json' for JSON output.
-      schema:
-        type: string
-        enum:
-        - json
-        - xml
-        default: json
   responses:
     Unauthorized:
       description: Unauthorized — invalid or missing credentials.

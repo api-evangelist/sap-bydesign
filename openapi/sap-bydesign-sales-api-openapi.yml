@@ -209,14 +209,14 @@ components:
         application/json:
           schema:
             $ref: '#/components/schemas/ODataError'
-    BadRequest:
-      description: Bad request — invalid OData query parameters or request body.
+    Unauthorized:
+      description: Unauthorized — invalid or missing credentials.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ODataError'
-    Unauthorized:
-      description: Unauthorized — invalid or missing credentials.
+    BadRequest:
+      description: Bad request — invalid OData query parameters or request body.
       content:
         application/json:
           schema:
@@ -237,40 +237,6 @@ components:
                   type: string
                 value:
                   type: string
-    CustomerInvoice:
-      type: object
-      description: SAP Business ByDesign customer invoice.
-      properties:
-        ObjectID:
-          type: string
-        ID:
-          type: string
-        BillToPartyID:
-          type: string
-        StatusCode:
-          type: string
-        GrossAmount:
-          type: string
-        NetAmount:
-          type: string
-        CurrencyCode:
-          type: string
-        PostingDate:
-          type: string
-          format: date
-    CustomerQuoteCreate:
-      type: object
-      required:
-      - BuyerPartyID
-      properties:
-        BuyerPartyID:
-          type: string
-          description: Customer ID.
-        ExpirationDate:
-          type: string
-          format: date
-        Note:
-          type: string
     SalesOrder:
       type: object
       description: SAP Business ByDesign sales order record.
@@ -297,6 +263,40 @@ components:
         CreationDateTime:
           type: string
           format: date-time
+    CustomerQuoteCreate:
+      type: object
+      required:
+      - BuyerPartyID
+      properties:
+        BuyerPartyID:
+          type: string
+          description: Customer ID.
+        ExpirationDate:
+          type: string
+          format: date
+        Note:
+          type: string
+    CustomerInvoice:
+      type: object
+      description: SAP Business ByDesign customer invoice.
+      properties:
+        ObjectID:
+          type: string
+        ID:
+          type: string
+        BillToPartyID:
+          type: string
+        StatusCode:
+          type: string
+        GrossAmount:
+          type: string
+        NetAmount:
+          type: string
+        CurrencyCode:
+          type: string
+        PostingDate:
+          type: string
+          format: date
     CustomerQuote:
       type: object
       description: SAP Business ByDesign customer quote (sales quote).
@@ -330,11 +330,22 @@ components:
         type: integer
         minimum: 0
         default: 0
-    ExpandParam:
-      name: $expand
+    FormatParam:
+      name: $format
       in: query
       required: false
-      description: Comma-separated navigation properties to expand inline.
+      description: Response format. Use 'json' for JSON output.
+      schema:
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
+    XCSRFTokenHeader:
+      name: x-csrf-token
+      in: header
+      required: true
+      description: 'CSRF token obtained from a prior GET request with x-csrf-token: Fetch.'
       schema:
         type: string
     FilterParam:
@@ -342,6 +353,13 @@ components:
       in: query
       required: false
       description: OData filter expression (e.g., Status eq 'Released' and PostingDate ge datetime'2024-01-01T00:00:00').
+      schema:
+        type: string
+    ExpandParam:
+      name: $expand
+      in: query
+      required: false
+      description: Comma-separated navigation properties to expand inline.
       schema:
         type: string
     TopParam:
@@ -359,24 +377,6 @@ components:
       in: query
       required: false
       description: Comma-separated list of properties to include in the response.
-      schema:
-        type: string
-    FormatParam:
-      name: $format
-      in: query
-      required: false
-      description: Response format. Use 'json' for JSON output.
-      schema:
-        type: string
-        enum:
-        - json
-        - xml
-        default: json
-    XCSRFTokenHeader:
-      name: x-csrf-token
-      in: header
-      required: true
-      description: 'CSRF token obtained from a prior GET request with x-csrf-token: Fetch.'
       schema:
         type: string
   securitySchemes:

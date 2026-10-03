@@ -89,6 +89,21 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
+    ODataError:
+      type: object
+      properties:
+        error:
+          type: object
+          properties:
+            code:
+              type: string
+            message:
+              type: object
+              properties:
+                lang:
+                  type: string
+                value:
+                  type: string
     SupplierInvoice:
       type: object
       description: SAP Business ByDesign supplier invoice.
@@ -108,21 +123,6 @@ components:
         PostingDate:
           type: string
           format: date
-    ODataError:
-      type: object
-      properties:
-        error:
-          type: object
-          properties:
-            code:
-              type: string
-            message:
-              type: object
-              properties:
-                lang:
-                  type: string
-                value:
-                  type: string
     PurchaseOrder:
       type: object
       description: SAP Business ByDesign purchase order.
@@ -152,18 +152,22 @@ components:
         type: integer
         minimum: 0
         default: 0
+    FormatParam:
+      name: $format
+      in: query
+      required: false
+      description: Response format. Use 'json' for JSON output.
+      schema:
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
     FilterParam:
       name: $filter
       in: query
       required: false
       description: OData filter expression (e.g., Status eq 'Released' and PostingDate ge datetime'2024-01-01T00:00:00').
-      schema:
-        type: string
-    ExpandParam:
-      name: $expand
-      in: query
-      required: false
-      description: Comma-separated navigation properties to expand inline.
       schema:
         type: string
     TopParam:
@@ -176,6 +180,13 @@ components:
         minimum: 1
         maximum: 1000
         default: 20
+    ExpandParam:
+      name: $expand
+      in: query
+      required: false
+      description: Comma-separated navigation properties to expand inline.
+      schema:
+        type: string
     SelectParam:
       name: $select
       in: query
@@ -183,17 +194,6 @@ components:
       description: Comma-separated list of properties to include in the response.
       schema:
         type: string
-    FormatParam:
-      name: $format
-      in: query
-      required: false
-      description: Response format. Use 'json' for JSON output.
-      schema:
-        type: string
-        enum:
-        - json
-        - xml
-        default: json
   responses:
     Unauthorized:
       description: Unauthorized — invalid or missing credentials.

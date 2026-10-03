@@ -173,29 +173,6 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   schemas:
-    InboundDelivery:
-      type: object
-      description: SAP Business ByDesign inbound delivery or customer return notification.
-      properties:
-        ObjectID:
-          type: string
-        ID:
-          type: string
-        SupplierID:
-          type: string
-        StatusCode:
-          type: string
-        PlannedDeliveryDate:
-          type: string
-          format: date
-    InboundDeliveryCreate:
-      type: object
-      properties:
-        SupplierID:
-          type: string
-        PlannedDeliveryDate:
-          type: string
-          format: date
     ODataError:
       type: object
       properties:
@@ -211,6 +188,29 @@ components:
                   type: string
                 value:
                   type: string
+    InboundDeliveryCreate:
+      type: object
+      properties:
+        SupplierID:
+          type: string
+        PlannedDeliveryDate:
+          type: string
+          format: date
+    InboundDelivery:
+      type: object
+      description: SAP Business ByDesign inbound delivery or customer return notification.
+      properties:
+        ObjectID:
+          type: string
+        ID:
+          type: string
+        SupplierID:
+          type: string
+        StatusCode:
+          type: string
+        PlannedDeliveryDate:
+          type: string
+          format: date
     OutboundDelivery:
       type: object
       description: SAP Business ByDesign outbound delivery.
@@ -236,6 +236,24 @@ components:
         type: integer
         minimum: 0
         default: 0
+    FormatParam:
+      name: $format
+      in: query
+      required: false
+      description: Response format. Use 'json' for JSON output.
+      schema:
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
+    XCSRFTokenHeader:
+      name: x-csrf-token
+      in: header
+      required: true
+      description: 'CSRF token obtained from a prior GET request with x-csrf-token: Fetch.'
+      schema:
+        type: string
     FilterParam:
       name: $filter
       in: query
@@ -267,33 +285,15 @@ components:
       description: Comma-separated list of properties to include in the response.
       schema:
         type: string
-    FormatParam:
-      name: $format
-      in: query
-      required: false
-      description: Response format. Use 'json' for JSON output.
-      schema:
-        type: string
-        enum:
-        - json
-        - xml
-        default: json
-    XCSRFTokenHeader:
-      name: x-csrf-token
-      in: header
-      required: true
-      description: 'CSRF token obtained from a prior GET request with x-csrf-token: Fetch.'
-      schema:
-        type: string
   responses:
-    BadRequest:
-      description: Bad request — invalid OData query parameters or request body.
+    Unauthorized:
+      description: Unauthorized — invalid or missing credentials.
       content:
         application/json:
           schema:
             $ref: '#/components/schemas/ODataError'
-    Unauthorized:
-      description: Unauthorized — invalid or missing credentials.
+    BadRequest:
+      description: Bad request — invalid OData query parameters or request body.
       content:
         application/json:
           schema:
