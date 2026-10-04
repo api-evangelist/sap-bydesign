@@ -233,6 +233,9 @@ apis:
   - type: OpenAPI
     url: openapi/sap-bydesign-supply-chain-api-openapi.yml
 common:
+- type: CapabilityMap
+  url: capabilities/sap-bydesign-capability-edges.yml
+  name: SAP Business ByDesign Business Capability Map
 - type: ParentCompany
   url: https://apis.io/providers/sap/
   name: Sap

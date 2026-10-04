@@ -1,0 +1,70 @@
+slug: sap-bydesign
+provider: SAP Business ByDesign
+generated_by: planning/capability-mapping/scripts/classify_capabilities.py
+model: claude-opus-5
+frame:
+- Software & Technology
+min_confidence: 0.7
+capability_model:
+  source: https://github.com/vincentmakes/turbo-ea-capabilities
+  license: CC-BY-4.0
+  attribution: Turbo EA Capabilities by Vincent Verdet — Turbo EA, https://github.com/vincentmakes/turbo-ea-capabilities,
+    CC BY 4.0
+  notice: NOTICE
+edge_count: 6
+edges:
+- tag: CRM
+  spec_file: sap-bydesign-crm-api-openapi.yml
+  capability_id: BC-410.30
+  capability_id_l1: BC-410
+  capability_name: Opportunity & Pipeline Management
+  confidence: 0.8
+  evidence: '"Query leads" and "Query opportunities" with schemas Lead, Opportunity'
+  reason: Lead and opportunity objects are the lead/opportunity pipeline surface of the ERP's CRM module.
+- tag: Procurement
+  spec_file: sap-bydesign-procurement-api-openapi.yml
+  capability_id: BC-500.30
+  capability_id_l1: BC-500
+  capability_name: Purchase Order Management
+  confidence: 0.8
+  evidence: 'GET /PurchaseOrderCollection queryPurchaseOrders ''Query purchase orders''; schemas: SupplierInvoice,
+    PurchaseOrder'
+  reason: Operations expose purchase orders and supplier invoices — core purchase order / procure-to-pay
+    operations. PO management is the most specific fit, though supplier invoices also touch AP.
+- tag: Sales
+  spec_file: sap-bydesign-sales-api-openapi.yml
+  capability_id: BC-410
+  capability_id_l1: BC-410
+  capability_name: Sales Management
+  confidence: 0.8
+  evidence: querySalesOrders 'Query sales orders'; createCustomerQuote 'Create customer quote'; queryCustomerInvoices
+  reason: 'Order-to-cash sales surface: sales orders, customer quotes, customer invoices. L1 Sales Management
+    is clear; spans quoting (BC-410.40) and receivables invoicing, so no single L2 asserted.'
+- tag: Supply Chain
+  spec_file: sap-bydesign-supply-chain-api-openapi.yml
+  capability_id: BC-520.40
+  capability_id_l1: BC-520
+  capability_name: Order Fulfilment Management
+  confidence: 0.8
+  evidence: queryOutboundDeliveries, postGoodsIssue 'Post goods issue', createInboundDelivery, postGoodsReceipt
+  reason: Inbound/outbound delivery and goods issue/receipt postings are order fulfilment and logistics
+    execution within supply chain.
+- tag: Analytics
+  spec_file: sap-bydesign-analytics-api-openapi.yml
+  capability_id: BC-610.50
+  capability_id_l1: BC-610
+  capability_name: Analytics & BI Management
+  confidence: 0.72
+  evidence: '"Query Business Analytics report", "Get Business Analytics metadata", "List all OData analytics
+    services"'
+  reason: Reporting/analytics data retrieval from the ERP; analytics & BI delivery. Partly plumbing (metadata,
+    service listing), hence moderate confidence.
+- tag: Projects
+  spec_file: sap-bydesign-projects-api-openapi.yml
+  capability_id: BC-900.30
+  capability_id_l1: BC-900
+  capability_name: Project Management
+  confidence: 0.7
+  evidence: GET /sap/byd/odata/cust/v1/khproject/ProjectCollection queryProjects 'Query projects'
+  reason: ERP project management business object; thin surface (single query) but clearly project records
+    in a project-management module.
