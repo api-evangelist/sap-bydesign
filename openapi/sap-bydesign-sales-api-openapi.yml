@@ -202,26 +202,89 @@ paths:
         '401':
           $ref: '#/components/responses/Unauthorized'
 components:
-  responses:
-    NotFound:
-      description: Not found — the requested entity does not exist.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ODataError'
-    Unauthorized:
-      description: Unauthorized — invalid or missing credentials.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ODataError'
-    BadRequest:
-      description: Bad request — invalid OData query parameters or request body.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ODataError'
+  parameters:
+    XCSRFTokenHeader:
+      name: x-csrf-token
+      in: header
+      required: true
+      description: 'CSRF token obtained from a prior GET request with x-csrf-token: Fetch.'
+      schema:
+        type: string
+    ExpandParam:
+      name: $expand
+      in: query
+      required: false
+      description: Comma-separated navigation properties to expand inline.
+      schema:
+        type: string
+    SelectParam:
+      name: $select
+      in: query
+      required: false
+      description: Comma-separated list of properties to include in the response.
+      schema:
+        type: string
+    TopParam:
+      name: $top
+      in: query
+      required: false
+      description: Maximum number of records to return.
+      schema:
+        type: integer
+        minimum: 1
+        maximum: 1000
+        default: 20
+    FilterParam:
+      name: $filter
+      in: query
+      required: false
+      description: OData filter expression (e.g., Status eq 'Released' and PostingDate ge datetime'2024-01-01T00:00:00').
+      schema:
+        type: string
+    FormatParam:
+      name: $format
+      in: query
+      required: false
+      description: Response format. Use 'json' for JSON output.
+      schema:
+        type: string
+        enum:
+        - json
+        - xml
+        default: json
+    SkipParam:
+      name: $skip
+      in: query
+      required: false
+      description: Number of records to skip for pagination.
+      schema:
+        type: integer
+        minimum: 0
+        default: 0
   schemas:
+    CustomerQuote:
+      type: object
+      description: SAP Business ByDesign customer quote (sales quote).
+      properties:
+        ObjectID:
+          type: string
+        ID:
+          type: string
+          description: Quote number.
+        BuyerPartyID:
+          type: string
+        StatusCode:
+          type: string
+        NetAmount:
+          type: string
+        CurrencyCode:
+          type: string
+        ExpirationDate:
+          type: string
+          format: date
+        CreationDateTime:
+          type: string
+          format: date-time
     ODataError:
       type: object
       properties:
@@ -237,32 +300,6 @@ components:
                   type: string
                 value:
                   type: string
-    SalesOrder:
-      type: object
-      description: SAP Business ByDesign sales order record.
-      properties:
-        ObjectID:
-          type: string
-        ID:
-          type: string
-          description: Sales order number.
-        BuyerID:
-          type: string
-          description: Customer purchase order number.
-        BillToPartyID:
-          type: string
-        ShipToPartyID:
-          type: string
-        StatusCode:
-          type: string
-          description: 1=Open, 2=In Process, 3=Closed, 4=Cancelled.
-        NetAmount:
-          type: string
-        CurrencyCode:
-          type: string
-        CreationDateTime:
-          type: string
-          format: date-time
     CustomerQuoteCreate:
       type: object
       required:
@@ -297,88 +334,51 @@ components:
         PostingDate:
           type: string
           format: date
-    CustomerQuote:
+    SalesOrder:
       type: object
-      description: SAP Business ByDesign customer quote (sales quote).
+      description: SAP Business ByDesign sales order record.
       properties:
         ObjectID:
           type: string
         ID:
           type: string
-          description: Quote number.
-        BuyerPartyID:
+          description: Sales order number.
+        BuyerID:
+          type: string
+          description: Customer purchase order number.
+        BillToPartyID:
+          type: string
+        ShipToPartyID:
           type: string
         StatusCode:
           type: string
+          description: 1=Open, 2=In Process, 3=Closed, 4=Cancelled.
         NetAmount:
           type: string
         CurrencyCode:
           type: string
-        ExpirationDate:
-          type: string
-          format: date
         CreationDateTime:
           type: string
           format: date-time
-  parameters:
-    SkipParam:
-      name: $skip
-      in: query
-      required: false
-      description: Number of records to skip for pagination.
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-    FormatParam:
-      name: $format
-      in: query
-      required: false
-      description: Response format. Use 'json' for JSON output.
-      schema:
-        type: string
-        enum:
-        - json
-        - xml
-        default: json
-    XCSRFTokenHeader:
-      name: x-csrf-token
-      in: header
-      required: true
-      description: 'CSRF token obtained from a prior GET request with x-csrf-token: Fetch.'
-      schema:
-        type: string
-    FilterParam:
-      name: $filter
-      in: query
-      required: false
-      description: OData filter expression (e.g., Status eq 'Released' and PostingDate ge datetime'2024-01-01T00:00:00').
-      schema:
-        type: string
-    ExpandParam:
-      name: $expand
-      in: query
-      required: false
-      description: Comma-separated navigation properties to expand inline.
-      schema:
-        type: string
-    TopParam:
-      name: $top
-      in: query
-      required: false
-      description: Maximum number of records to return.
-      schema:
-        type: integer
-        minimum: 1
-        maximum: 1000
-        default: 20
-    SelectParam:
-      name: $select
-      in: query
-      required: false
-      description: Comma-separated list of properties to include in the response.
-      schema:
-        type: string
+  responses:
+    Unauthorized:
+      description: Unauthorized — invalid or missing credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ODataError'
+    BadRequest:
+      description: Bad request — invalid OData query parameters or request body.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ODataError'
+    NotFound:
+      description: Not found — the requested entity does not exist.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ODataError'
   securitySchemes:
     basicAuth:
       type: http
