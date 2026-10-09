@@ -1,3 +1,7 @@
+# Provenance stamped 2026-10-07 (roadmap#943): written by an API Evangelist sweep (undated — the file carries no date and git cannot supply one), not
+# harvested from the provider. `method: generated` so the economics campaign may replace it with a
+# dated, verbatim transcription; every figure below is unverified until it does.
+method: generated
 name: SAP Business ByDesign Rate Limits
 description: SAP Business ByDesign does not publish explicit public API rate limit thresholds. API throttling is managed at the tenant level by SAP infrastructure. OData and SOAP services are subject to fair-use policies governed by the subscription tier and tenant configuration.
 url: https://help.sap.com/docs/SAP_BUSINESS_BYDESIGN
