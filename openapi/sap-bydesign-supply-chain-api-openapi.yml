@@ -180,20 +180,15 @@ components:
       description: 'CSRF token obtained from a prior GET request with x-csrf-token: Fetch.'
       schema:
         type: string
-    ExpandParam:
-      name: $expand
+    SkipParam:
+      name: $skip
       in: query
       required: false
-      description: Comma-separated navigation properties to expand inline.
+      description: Number of records to skip for pagination.
       schema:
-        type: string
-    SelectParam:
-      name: $select
-      in: query
-      required: false
-      description: Comma-separated list of properties to include in the response.
-      schema:
-        type: string
+        type: integer
+        minimum: 0
+        default: 0
     TopParam:
       name: $top
       in: query
@@ -204,6 +199,20 @@ components:
         minimum: 1
         maximum: 1000
         default: 20
+    SelectParam:
+      name: $select
+      in: query
+      required: false
+      description: Comma-separated list of properties to include in the response.
+      schema:
+        type: string
+    ExpandParam:
+      name: $expand
+      in: query
+      required: false
+      description: Comma-separated navigation properties to expand inline.
+      schema:
+        type: string
     FilterParam:
       name: $filter
       in: query
@@ -222,28 +231,6 @@ components:
         - json
         - xml
         default: json
-    SkipParam:
-      name: $skip
-      in: query
-      required: false
-      description: Number of records to skip for pagination.
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-  responses:
-    Unauthorized:
-      description: Unauthorized — invalid or missing credentials.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ODataError'
-    BadRequest:
-      description: Bad request — invalid OData query parameters or request body.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ODataError'
   schemas:
     OutboundDelivery:
       type: object
@@ -258,14 +245,6 @@ components:
         StatusCode:
           type: string
         PlannedShippingDate:
-          type: string
-          format: date
-    InboundDeliveryCreate:
-      type: object
-      properties:
-        SupplierID:
-          type: string
-        PlannedDeliveryDate:
           type: string
           format: date
     ODataError:
@@ -298,6 +277,27 @@ components:
         PlannedDeliveryDate:
           type: string
           format: date
+    InboundDeliveryCreate:
+      type: object
+      properties:
+        SupplierID:
+          type: string
+        PlannedDeliveryDate:
+          type: string
+          format: date
+  responses:
+    BadRequest:
+      description: Bad request — invalid OData query parameters or request body.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ODataError'
+    Unauthorized:
+      description: Unauthorized — invalid or missing credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ODataError'
   securitySchemes:
     basicAuth:
       type: http

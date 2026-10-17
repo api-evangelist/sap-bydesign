@@ -98,6 +98,13 @@ paths:
           $ref: '#/components/responses/Unauthorized'
 components:
   parameters:
+    SelectParam:
+      name: $select
+      in: query
+      required: false
+      description: Comma-separated list of properties to include in the response.
+      schema:
+        type: string
     TopParam:
       name: $top
       in: query
@@ -108,13 +115,15 @@ components:
         minimum: 1
         maximum: 1000
         default: 20
-    SelectParam:
-      name: $select
+    SkipParam:
+      name: $skip
       in: query
       required: false
-      description: Comma-separated list of properties to include in the response.
+      description: Number of records to skip for pagination.
       schema:
-        type: string
+        type: integer
+        minimum: 0
+        default: 0
     FilterParam:
       name: $filter
       in: query
@@ -133,33 +142,7 @@ components:
         - json
         - xml
         default: json
-    SkipParam:
-      name: $skip
-      in: query
-      required: false
-      description: Number of records to skip for pagination.
-      schema:
-        type: integer
-        minimum: 0
-        default: 0
-  responses:
-    Unauthorized:
-      description: Unauthorized — invalid or missing credentials.
-      content:
-        application/json:
-          schema:
-            $ref: '#/components/schemas/ODataError'
   schemas:
-    ODataServiceDocument:
-      type: object
-      properties:
-        d:
-          type: object
-          properties:
-            EntitySets:
-              type: array
-              items:
-                type: string
     ODataError:
       type: object
       properties:
@@ -175,6 +158,23 @@ components:
                   type: string
                 value:
                   type: string
+    ODataServiceDocument:
+      type: object
+      properties:
+        d:
+          type: object
+          properties:
+            EntitySets:
+              type: array
+              items:
+                type: string
+  responses:
+    Unauthorized:
+      description: Unauthorized — invalid or missing credentials.
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ODataError'
   securitySchemes:
     basicAuth:
       type: http
