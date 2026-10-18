@@ -27,5 +27,5 @@
     - connectors/applications/sap-business-bydesign
     vendor_link: https://www.sap.com/products/business-bydesign.html
     builder: Fivetran
-  status: pending-generation
+  status: not-a-workflow
   arazzo: null
