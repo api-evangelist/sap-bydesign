@@ -1,5 +1,5 @@
 generated: '2026-10-12'
-method: none
+method: searched
 source:
 - https://zapier.com/apps/sap-bydesign/integrations
 - https://zapier.com/apps/sap-business-bydesign/integrations
@@ -8,11 +8,39 @@ source:
 - https://monid.ai/tools/sap-bydesign
 checked:
 - https://composio.dev/toolkits/sap-bydesign
+- https://fivetran.com/docs-sitemap.xml
+- https://fivetran.com/docs/connectors/partner-built-program
 - https://monid.ai/tools/sap-bydesign
 - https://n8n.io/integrations/sap-bydesign/
 - https://zapier.com/apps/sap-business-bydesign/integrations
 - https://zapier.com/apps/sap-bydesign/integrations
 summary: null
 marketplace_apps: []
-edges: []
+edges:
+- partner_name: Fivetran
+  partner: fivetran
+  partner_match: aggregator
+  type: marketplace
+  marketplace: fivetran-connectors
+  channel: elt-connector
+  relationship: ipaas-bridge
+  direction: third-party
+  evidence: https://fivetran.com/docs/connectors/applications/sap-business-bydesign
+  category: null
+  contract_reference:
+    register: Fivetran connectors (fivetran.com/docs/connectors, docs-sitemap.xml + Partner-Built program)
+    spec_file: null
+    role: elt-connector:fivetran
+    registered_name: SAP Business ByDesign
+    matched_domain: sap.com
+    matched_by: domain+name-among-holders
+    detected_by: sweep-data-integration.py
+    detected: '2026-10-18'
+    signal_note: one edge per (provider, platform); connectors, streams, packages and usage are context, never read
+    connector_paths:
+    - connectors/applications/sap-business-bydesign
+    vendor_link: https://www.sap.com/products/business-bydesign.html
+    builder: Fivetran
+  detected_by: sweep-data-integration.py
+  first_seen: '2026-10-18'
 templates: []
